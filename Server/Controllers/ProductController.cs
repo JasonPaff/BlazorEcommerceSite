@@ -1,11 +1,6 @@
-using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Threading.Tasks;
-using ECommerce.Shared;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
 
 namespace ECommerce.Server.Controllers
 {
@@ -13,18 +8,28 @@ namespace ECommerce.Server.Controllers
     [ApiController]
     public class ProductController : ControllerBase
     {
-        private readonly DataContext _context;
+        private readonly IProductService _productService;
         
-        public ProductController(DataContext context)
+        // inject product service
+        public ProductController(IProductService productService)
         {
-            _context = context;
+            _productService = productService;
         }
         
-        [HttpGet]
-        public async Task<ActionResult<List<Product>>> GetProducts()
+        // get all products route
+        [HttpGet] 
+        public async Task<ActionResult<ServiceResponse<List<Product>>>> GetProducts()
         {
-            var products = await _context.Products.ToListAsync();
-            return Ok(products);
+            var result = await _productService.GetProductsAsync();
+            return Ok(result);
+        }
+
+        // get specific product route
+        [HttpGet("{productId:int}")]
+        public async Task<ActionResult<ServiceResponse<Product>>> GetProduct(int productId)
+        {
+            var result = await _productService.GetProductAsync(productId);
+            return Ok(result);
         }
     }
 }

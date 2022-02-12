@@ -1,37 +1,42 @@
-﻿@inject HttpClient _http
+﻿@using ECommerce.Client.Services.ProductService
+<!-- inject product service -->
+@inject IProductService _productService 
 
-<ul class="list-unstyled">
-    @foreach (var product in Products)
-    {
-        <li class="media my-3">
-            <div class="media-image-wrapper mr-2">
-                <a href="#">
-                    <img class="media-img" src="@product.ImageUrl" alt="@product.Title"/>
-                </a>
-            </div>
-            <div class="media-body">
-                <a href="#">
-                    <h4 class="mb-0">
-                        @product.Title
-                    </h4>
-                </a>
-                <p>@product.Description</p>
-                <h5 class="price">
-                    $@product.Price
-                </h5>
-            </div>
-        </li>
-    }
-</ul>
+@if (_productService.Products.Count is 0)
+{
+    <span>Loading Products...</span>
+}
+else
+{
+    <ul class="list-unstyled">
+        @foreach (var product in _productService.Products)
+        {
+            <li class="media my-3">
+                <div class="media-image-wrapper mr-2">
+                    <a href="/product/@product.Id">
+                        <img class="media-img" src="@product.ImageUrl" alt="@product.Title"/>
+                    </a>
+                </div>
+                <div class="media-body">
+                    <a href="/product/@product.Id">
+                        <h4 class="mb-0">
+                            @product.Title
+                        </h4>
+                    </a>
+                    <p>@product.Description</p>
+                    <h5 class="price">
+                        $@product.Price
+                    </h5>
+                </div>
+            </li>
+        }
+    </ul>
+}
 
 @code {
-
-    private static List<Product> Products = new List<Product>();
-
     protected override async Task OnInitializedAsync()
     {
-        var result = await _http.GetFromJsonAsync<List<Product>>(("api/product"));
-        if (result != null) Products = result;
+        // fill products service Products property with database products
+        await _productService.GetProducts();
     }
-
 }

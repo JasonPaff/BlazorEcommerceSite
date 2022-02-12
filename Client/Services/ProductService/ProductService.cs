@@ -9,15 +9,16 @@ namespace ECommerce.Client.Services.ProductService
     {
         private readonly HttpClient _http;
 
-        public ProductService(HttpClient _http)
+        // inject http service
+        public ProductService(HttpClient http)
         {
-            this._http = _http; // inject http service
+            _http = http; 
         }
         
         // products list
         public List<Product> Products { get; set; } = new();
         
-        // get products from the products controller on the server
+        // get all products from the products controller on the server
         public async Task GetProducts()
         {
             var result = await _http.GetFromJsonAsync<ServiceResponse<List<Product>>>("api/product");
@@ -25,6 +26,7 @@ namespace ECommerce.Client.Services.ProductService
                 Products = result.Data;
         }
 
+        // get a single product from the products controller on the server
         public async Task<ServiceResponse<Product>?> GetProduct(int productId)
         {
             var result = await _http.GetFromJsonAsync<ServiceResponse<Product>>($"api/product/{productId}");

@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
 
@@ -14,7 +15,7 @@ namespace ECommerce.Server.Services.ProductService
             _context = context; // inject database context
         }
 
-        // return the products from the database
+        // return all products
         public async Task<ServiceResponse<List<Product>>> GetProductsAsync()
         {
             var response = new ServiceResponse<List<Product>>
@@ -25,7 +26,7 @@ namespace ECommerce.Server.Services.ProductService
             return response;
         }
 
-        // return a single product from the database
+        // return a single product
         public async Task<ServiceResponse<Product>> GetProductAsync(int productId)
         {
             var response = new ServiceResponse<Product>();
@@ -38,6 +39,19 @@ namespace ECommerce.Server.Services.ProductService
             }
             else
                 response.Data = product;
+
+            return response;
+        }
+
+        // return the products based on a category
+        public async Task<ServiceResponse<List<Product>>> GetProductsByCategoryAsync(string categoryUrl)
+        {
+            var response = new ServiceResponse<List<Product>>
+            {
+                Data = await _context.Products
+                    .Where(p => p.Category.Url.ToLower().Equals(categoryUrl.ToLower()))
+                    .ToListAsync()
+            };
 
             return response;
         }

@@ -2,6 +2,7 @@ global using ECommerce.Shared;
 global using Microsoft.EntityFrameworkCore;
 global using ECommerce.Server.Data;
 global using ECommerce.Server.Services.ProductService;
+global using ECommerce.Server.Services.CategoryService;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -24,6 +25,7 @@ builder.Services.AddSwaggerGen();
 
 // add product service
 builder.Services.AddScoped<IProductService, ProductService>();
+builder.Services.AddScoped<ICategoryService, CategoryService>();
 
 var app = builder.Build();
 

@@ -18,7 +18,7 @@ namespace ECommerce.Client.Services.ProductService
         // products list
         public List<Product> Products { get; set; } = new();
         
-        // get all products from the products controller on the server
+        // get all products from the products
         public async Task GetProducts()
         {
             var result = await _http.GetFromJsonAsync<ServiceResponse<List<Product>>>("api/product");

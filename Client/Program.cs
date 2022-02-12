@@ -1,5 +1,6 @@
 global using ECommerce.Shared;
 global using ECommerce.Client.Services.ProductService;
+global using ECommerce.Client.Services.CategoryService;
 using System;
 using System.Net.Http;
 using Microsoft.AspNetCore.Components.Web;
@@ -17,5 +18,6 @@ builder.Services.AddScoped(sp => new HttpClient { BaseAddress = new Uri(builder.
 
 // product service
 builder.Services.AddScoped<IProductService, ProductService>();
+builder.Services.AddScoped<ICategoryService, CategoryService>();
 
 await builder.Build().RunAsync();

@@ -16,7 +16,7 @@ namespace ECommerce.Server.Controllers
             _productService = productService;
         }
         
-        // get all products route
+        // get all products from product service
         [HttpGet] 
         public async Task<ActionResult<ServiceResponse<List<Product>>>> GetProducts()
         {
@@ -24,7 +24,7 @@ namespace ECommerce.Server.Controllers
             return Ok(result);
         }
 
-        // get specific product route
+        // get specific product from product service
         [HttpGet("{productId:int}")]
         public async Task<ActionResult<ServiceResponse<Product>>> GetProduct(int productId)
         {

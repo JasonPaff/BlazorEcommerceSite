@@ -1,0 +1,12 @@
+C:\Users\jason\RiderProjects\ECommerce\Shared\bin\Debug\net6.0\ECommerce.Shared.deps.json
+C:\Users\jason\RiderProjects\ECommerce\Shared\bin\Debug\net6.0\ECommerce.Shared.dll
+C:\Users\jason\RiderProjects\ECommerce\Shared\bin\Debug\net6.0\ref\ECommerce.Shared.dll
+C:\Users\jason\RiderProjects\ECommerce\Shared\bin\Debug\net6.0\ECommerce.Shared.pdb
+C:\Users\jason\RiderProjects\ECommerce\Shared\obj\Debug\net6.0\ECommerce.Shared.csproj.AssemblyReference.cache
+C:\Users\jason\RiderProjects\ECommerce\Shared\obj\Debug\net6.0\ECommerce.Shared.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\jason\RiderProjects\ECommerce\Shared\obj\Debug\net6.0\ECommerce.Shared.AssemblyInfoInputs.cache
+C:\Users\jason\RiderProjects\ECommerce\Shared\obj\Debug\net6.0\ECommerce.Shared.AssemblyInfo.cs
+C:\Users\jason\RiderProjects\ECommerce\Shared\obj\Debug\net6.0\ECommerce.Shared.csproj.CoreCompileInputs.cache
+C:\Users\jason\RiderProjects\ECommerce\Shared\obj\Debug\net6.0\ECommerce.Shared.dll
+C:\Users\jason\RiderProjects\ECommerce\Shared\obj\Debug\net6.0\ref\ECommerce.Shared.dll
+C:\Users\jason\RiderProjects\ECommerce\Shared\obj\Debug\net6.0\ECommerce.Shared.pdb

@@ -23,5 +23,15 @@ namespace ECommerce.Client.Services.AuthService
             // return response from auth controller
             return await result.Content.ReadFromJsonAsync<ServiceResponse<int>>();
         }
+
+        // login with auth controller
+        public async Task<ServiceResponse<string>> Login(UserLogin request)
+        {
+            // send request to auth controller
+            var result = await _http.PostAsJsonAsync("api/auth/login", request);
+            
+            // return response from auth controller
+            return await result.Content.ReadFromJsonAsync<ServiceResponse<string>>();
+        }
     }
 }

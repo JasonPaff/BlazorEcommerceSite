@@ -1,4 +1,7 @@
 ﻿@page "/login"
+@inject IAuthService _authService
+@inject NavigationManager _navigation
+@inject ILocalStorageService _localStorage
 
 <PageTitle>Login</PageTitle>
 
@@ -18,12 +21,31 @@
     </div>
     <button class="btn btn-primary" type="submit">Login</button>
 </EditForm>
-
+<div class="text-danger">
+    <span>@errorMessage</span>
+</div>
 @code {
     private UserLogin user = new UserLogin();
-
+    private string errorMessage = string.Empty;
+    
     private async Task HandleLogin()
     {
-        Console.WriteLine("Log me in!");
+        var result = await _authService.Login(user);
+
+        if (result.Success)
+        {
+            // reset error message
+            errorMessage = string.Empty;
+
+            // store token in local storage
+            await _localStorage.SetItemAsync("authToken", result.Data);
+            
+            // navigate to index page
+            _navigation.NavigateTo("");
+        }
+        else
+        {
+            errorMessage = result.Message;
+        }
     }
 }

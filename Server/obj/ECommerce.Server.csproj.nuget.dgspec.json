@@ -1,7 +1,7 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\jason\\RiderProjects\\ECommerce\\Server\\ECommerce.Server.csproj": {}
+    "C:\\Users\\jason\\RiderProjects\\ECommerce\\server\\ECommerce.Server.csproj": {}
   },
   "projects": {
     "C:\\Users\\jason\\RiderProjects\\ECommerce\\Client\\ECommerce.Client.csproj": {
@@ -100,14 +100,14 @@
         }
       }
     },
-    "C:\\Users\\jason\\RiderProjects\\ECommerce\\Server\\ECommerce.Server.csproj": {
+    "C:\\Users\\jason\\RiderProjects\\ECommerce\\server\\ECommerce.Server.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\jason\\RiderProjects\\ECommerce\\Server\\ECommerce.Server.csproj",
+        "projectUniqueName": "C:\\Users\\jason\\RiderProjects\\ECommerce\\server\\ECommerce.Server.csproj",
         "projectName": "ECommerce.Server",
-        "projectPath": "C:\\Users\\jason\\RiderProjects\\ECommerce\\Server\\ECommerce.Server.csproj",
+        "projectPath": "C:\\Users\\jason\\RiderProjects\\ECommerce\\server\\ECommerce.Server.csproj",
         "packagesPath": "C:\\Users\\jason\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\jason\\RiderProjects\\ECommerce\\Server\\obj\\",
+        "outputPath": "C:\\Users\\jason\\RiderProjects\\ECommerce\\server\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"

@@ -32,7 +32,7 @@ else
         }
     </ul>
 
-    @for (var i = 1; i < _productService.PageCount; i++)
+    @for (var i = 1; i <= _productService.PageCount; i++)
     {
         <a class="btn @(i == _productService.CurrentPage ? "btn-info" : "btn-outline-info") page-selection" href="/search/@_productService.LastSearchText/@i">
             @i

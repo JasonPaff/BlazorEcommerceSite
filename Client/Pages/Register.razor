@@ -5,6 +5,7 @@
 <h3>Register</h3>
 
 <EditForm Model="user" OnValidSubmit="HandleRegistration">
+    <DataAnnotationsValidator/>
     <div class="mb-3">
         <label for="email">Email</label>
         <InputText class="form-control" id="email" @bind-Value="user.Email"/>
@@ -18,6 +19,7 @@
         <InputText class="form-control" id="confirmPassword" @bind-Value="user.ConfirmPassword" type="password"/>
     </div>
     <button class="btn btn-primary" type="submit">Register</button>
+    <ValidationSummary/>
 </EditForm>
 
 @code {

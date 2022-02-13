@@ -1,5 +1,4 @@
 ﻿using System.Collections.Generic;
-using System.Security.Claims;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 
@@ -31,9 +30,16 @@ namespace ECommerce.Server.Controllers
         public async Task<ActionResult<ServiceResponse<List<CartProductResponse>>>> StoreCartItems(
             List<CartItem> cartItems)
         {
-            var userId = int.Parse(User.FindFirstValue(ClaimTypes.NameIdentifier));
-            var result = await _cartService.StoreCartItems(cartItems, userId);
+            var result = await _cartService.StoreCartItems(cartItems);
             return Ok(result);
+        }
+        
+        // get cart items count
+        [HttpGet("count")]
+        public async Task<ActionResult<ServiceResponse<int>>> GetCartItemsCount()
+
+        {
+            return await _cartService.GetCartItemsCount();
         }
     }
 }

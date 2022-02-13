@@ -29,6 +29,9 @@ namespace ECommerce.Client.Services.CartService
 
             // update local storage with new cart
             await _localStorage.SetItemAsync("cart", cart);
+            
+            // notify app of cart count change
+            OnChange?.Invoke();
         }
 
         // return all items in the cart

@@ -813,8 +813,6 @@ C:\Users\jason\RiderProjects\ECommerce\Client\obj\Debug\net6.0\build-gz\5hYUh+Ww
 C:\Users\jason\RiderProjects\ECommerce\Client\obj\Debug\net6.0\blazor.boot.json
 C:\Users\jason\RiderProjects\ECommerce\Client\obj\Debug\net6.0\staticwebassets.build.json
 C:\Users\jason\RiderProjects\ECommerce\Client\obj\Debug\net6.0\staticwebassets.development.json
-C:\Users\jason\RiderProjects\ECommerce\Client\obj\Debug\net6.0\scopedcss\Shared\MainLayout.razor.rz.scp.css
-C:\Users\jason\RiderProjects\ECommerce\Client\obj\Debug\net6.0\scopedcss\Shared\NavMenu.razor.rz.scp.css
 C:\Users\jason\RiderProjects\ECommerce\Client\obj\Debug\net6.0\scopedcss\bundle\ECommerce.Client.styles.css
 C:\Users\jason\RiderProjects\ECommerce\Client\obj\Debug\net6.0\scopedcss\projectbundle\ECommerce.Client.bundle.scp.css
 C:\Users\jason\RiderProjects\ECommerce\Client\obj\Debug\net6.0\ECommerce.Client.csproj.CopyComplete

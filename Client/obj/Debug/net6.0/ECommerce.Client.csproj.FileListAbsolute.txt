@@ -831,3 +831,15 @@ C:\Users\jason\RiderProjects\ECommerce\Client\bin\Debug\net6.0\Blazored.LocalSto
 C:\Users\jason\RiderProjects\ECommerce\Client\obj\Debug\net6.0\build-gz\QbgeHeRT.gz
 C:\Users\jason\RiderProjects\ECommerce\Client\obj\Debug\net6.0\scopedcss\Pages\Cart.razor.rz.scp.css
 C:\Users\jason\RiderProjects\ECommerce\Client\obj\Debug\net6.0\scopedcss\Shared\UserButton.razor.rz.scp.css
+C:\Users\jason\RiderProjects\ECommerce\Client\bin\Debug\net6.0\wwwroot\_framework\Microsoft.AspNetCore.Components.Authorization.dll
+C:\Users\jason\RiderProjects\ECommerce\Client\bin\Debug\net6.0\wwwroot\_framework\Microsoft.AspNetCore.Components.Authorization.dll.gz
+C:\Users\jason\RiderProjects\ECommerce\Client\bin\Debug\net6.0\Microsoft.AspNetCore.Components.Authorization.dll
+C:\Users\jason\RiderProjects\ECommerce\Client\obj\Debug\net6.0\build-gz\w04bglZh.gz
+C:\Users\jason\RiderProjects\ECommerce\Client\bin\Debug\net6.0\wwwroot\_framework\Microsoft.AspNetCore.WebUtilities.dll
+C:\Users\jason\RiderProjects\ECommerce\Client\bin\Debug\net6.0\wwwroot\_framework\Microsoft.Net.Http.Headers.dll
+C:\Users\jason\RiderProjects\ECommerce\Client\bin\Debug\net6.0\wwwroot\_framework\Microsoft.Net.Http.Headers.dll.gz
+C:\Users\jason\RiderProjects\ECommerce\Client\bin\Debug\net6.0\wwwroot\_framework\Microsoft.AspNetCore.WebUtilities.dll.gz
+C:\Users\jason\RiderProjects\ECommerce\Client\bin\Debug\net6.0\Microsoft.AspNetCore.WebUtilities.dll
+C:\Users\jason\RiderProjects\ECommerce\Client\bin\Debug\net6.0\Microsoft.Net.Http.Headers.dll
+C:\Users\jason\RiderProjects\ECommerce\Client\obj\Debug\net6.0\build-gz\xFWnkvNp.gz
+C:\Users\jason\RiderProjects\ECommerce\Client\obj\Debug\net6.0\build-gz\DgJ7uqUB.gz

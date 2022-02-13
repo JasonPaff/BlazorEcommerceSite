@@ -1,7 +1,9 @@
 ﻿@page "/login"
+@using Microsoft.AspNetCore.WebUtilities
 @inject IAuthService _authService
-@inject NavigationManager _navigation
+@inject NavigationManager _navigationManager
 @inject ILocalStorageService _localStorage
+@inject AuthenticationStateProvider _authenticationStateProvider
 
 <PageTitle>Login</PageTitle>
 
@@ -27,7 +29,21 @@
 @code {
     private UserLogin user = new UserLogin();
     private string errorMessage = string.Empty;
-    
+
+    private string returnUrl = string.Empty;
+
+    protected override void OnInitialized()
+    {
+        // get absolute url from browser
+        var uri = _navigationManager.ToAbsoluteUri(_navigationManager.Uri);
+
+        // parse return url
+        if (QueryHelpers.ParseQuery(uri.Query).TryGetValue("returnUrl", out var url))
+        {
+            returnUrl = url;
+        }
+    }
+
     private async Task HandleLogin()
     {
         var result = await _authService.Login(user);
@@ -39,9 +55,12 @@
 
             // store token in local storage
             await _localStorage.SetItemAsync("authToken", result.Data);
+
+            // users authentication state
+            await _authenticationStateProvider.GetAuthenticationStateAsync();
             
-            // navigate to index page
-            _navigation.NavigateTo("");
+            // redirect to where the login came from
+            _navigationManager.NavigateTo(returnUrl);
         }
         else
         {

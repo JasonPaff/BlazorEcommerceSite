@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "fL9gr748vVzBO7Fom6ZHCH/Ezb6VHP0CROsni7rQ+kUyDY359kPjh4LnnBzGmd/bQ7rBjHTelSS+RilDmUNdaw==",
+  "dgSpecHash": "XfVj8dFbS/ykEfumV6IIukWRU0U9OoJUs0COHzHTXV6iWD1xVaZoLQbk8Ri2tiwPbJgq5XU18n6BPMek/ZEuJQ==",
   "success": true,
-  "projectFilePath": "C:\\Users\\jason\\RiderProjects\\ECommerce\\server\\ECommerce.Server.csproj",
+  "projectFilePath": "C:\\Users\\jason\\RiderProjects\\ECommerce\\Server\\ECommerce.Server.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\jason\\.nuget\\packages\\humanizer.core\\2.8.26\\humanizer.core.2.8.26.nupkg.sha512",
     "C:\\Users\\jason\\.nuget\\packages\\messagepack\\2.1.152\\messagepack.2.1.152.nupkg.sha512",

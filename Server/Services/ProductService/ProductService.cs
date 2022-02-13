@@ -99,6 +99,20 @@ namespace ECommerce.Server.Services.ProductService
             return new ServiceResponse<List<string>> {Data = result};
         }
 
+        // returns the featured products
+        public async Task<ServiceResponse<List<Product>>> GetFeaturedProducts()
+        {
+            var response = new ServiceResponse<List<Product>>
+            {
+                Data = await _context.Products
+                    .Where(p => p.Featured)
+                    .Include(p => p.Variants)
+                    .ToListAsync()
+            };
+
+            return response;
+        }
+
         // returns the products based on a text search
         public async Task<ServiceResponse<List<Product>>> SearchProducts(string searchText)
         {

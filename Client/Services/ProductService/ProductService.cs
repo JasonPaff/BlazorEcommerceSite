@@ -30,7 +30,7 @@ namespace ECommerce.Client.Services.ProductService
         {
             // get all products or category specific products
             var result = categoryUrl == null
-                ? await _http.GetFromJsonAsync<ServiceResponse<List<Product>>>("api/product")
+                ? await _http.GetFromJsonAsync<ServiceResponse<List<Product>>>("api/product/featured")
                 : await _http.GetFromJsonAsync<ServiceResponse<List<Product>>>($"api/product/category/{categoryUrl}");
             if (result is {Data: { }})
                 Products = result.Data;

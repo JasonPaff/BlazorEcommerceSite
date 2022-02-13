@@ -38,6 +38,10 @@ build_metadata.AdditionalFiles.CssScope =
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcUHJvZHVjdERldGFpbHMucmF6b3I=
 build_metadata.AdditionalFiles.CssScope = b-kuqh2twvc6
 
+[C:/Users/jason/RiderProjects/ECommerce/Client/Shared/FeaturedProducts.razor]
+build_metadata.AdditionalFiles.TargetPath = U2hhcmVkXEZlYXR1cmVkUHJvZHVjdHMucmF6b3I=
+build_metadata.AdditionalFiles.CssScope = b-is3m924y5p
+
 [C:/Users/jason/RiderProjects/ECommerce/Client/Shared/HomeButton.razor]
 build_metadata.AdditionalFiles.TargetPath = U2hhcmVkXEhvbWVCdXR0b24ucmF6b3I=
 build_metadata.AdditionalFiles.CssScope = b-ia1o4aij97

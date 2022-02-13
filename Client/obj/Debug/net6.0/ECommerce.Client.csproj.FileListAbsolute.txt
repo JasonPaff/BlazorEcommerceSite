@@ -826,3 +826,4 @@ C:\Users\jason\RiderProjects\ECommerce\Client\obj\Debug\net6.0\scopedcss\Pages\P
 C:\Users\jason\RiderProjects\ECommerce\Client\obj\Debug\net6.0\scopedcss\Shared\ShopLayout.razor.rz.scp.css
 C:\Users\jason\RiderProjects\ECommerce\Client\obj\Debug\net6.0\scopedcss\Shared\ShopMenu.razor.rz.scp.css
 C:\Users\jason\RiderProjects\ECommerce\Client\obj\Debug\net6.0\scopedcss\Shared\HomeButton.razor.rz.scp.css
+C:\Users\jason\RiderProjects\ECommerce\Client\obj\Debug\net6.0\scopedcss\Shared\FeaturedProducts.razor.rz.scp.css

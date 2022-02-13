@@ -55,5 +55,13 @@ namespace ECommerce.Server.Controllers
             var result = await _productService.GetProductsByCategoryAsync(categoryUrl);
             return Ok(result);
         }
+        
+        // get featured products
+        [HttpGet("featured")]
+        public async Task<ActionResult<ServiceResponse<Product>>> GetFeaturedProducts()
+        {
+            var result = await _productService.GetFeaturedProducts();
+            return Ok(result);
+        }
     }
 }

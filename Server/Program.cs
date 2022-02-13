@@ -31,12 +31,12 @@ builder.Services.AddScoped<ICartService, CartService>();
 
 var app = builder.Build();
 
-// setup swagger ui
-app.UseSwaggerUI();
-
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
 {
+    // only use swagger in dev environment
+    app.UseSwaggerUI();
+    app.UseSwagger();
     app.UseWebAssemblyDebugging();
 }
 else
@@ -46,8 +46,6 @@ else
     app.UseHsts();
 }
 
-// swagger
-app.UseSwagger();
 app.UseHttpsRedirection();
 
 app.UseBlazorFrameworkFiles();

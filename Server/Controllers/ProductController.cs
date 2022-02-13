@@ -33,10 +33,10 @@ namespace ECommerce.Server.Controllers
         }
         
         // get products based on a search term 
-        [HttpGet("search/{searchText}")]
-        public async Task<ActionResult<ServiceResponse<Product>>> GetProduct(string searchText)
+        [HttpGet("search/{searchText}/{page:int}")]
+        public async Task<ActionResult<ServiceResponse<ProductSearchResult>>> SearchProducts(string searchText, int page)
         {
-            var result = await _productService.SearchProducts(searchText);
+            var result = await _productService.SearchProducts(searchText, page);
             return Ok(result);
         }
         

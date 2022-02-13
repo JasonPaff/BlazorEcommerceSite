@@ -12,6 +12,10 @@
     text-align: center;
 }
 
+.original-price[b-kuqh2twvc6] {
+    text-decoration: line-through;
+}
+
 @media (max-width: 1023px) {
     .media[b-kuqh2twvc6] {
         flex-direction: column;

@@ -14,9 +14,29 @@ else
         <div class="media-body">
             <h2 class="mb-0">@_product.Title</h2>
             <p>@_product.Description</p>
-            <h4 class="price">
-                @* $@_product.Price *@
-            </h4>
+            @if (_product.Variants != null && _product.Variants.Count > 1)
+            {
+                <div>
+                    <select class="form-control" @bind="currentTypeId">
+                        @foreach (var variant in _product.Variants)
+                        {
+                            <option value="@variant.ProductTypeId">@variant.ProductType.Name</option>
+                        }
+                    </select>
+                </div>
+            }
+            @if (GetSelectedVariant() != null)
+            {
+                @if (GetSelectedVariant().OriginalPrice > GetSelectedVariant().Price)
+                {
+                    <h6 class="text-muted original-price">
+                        $@GetSelectedVariant().OriginalPrice
+                    </h6>
+                }
+                <h4 class="price">
+                    $@GetSelectedVariant().Price
+                </h4>
+            }
         </div>
     </div>
 }
@@ -24,6 +44,7 @@ else
 @code {
     private Product? _product = null;
     private string _message = string.Empty;
+    private int currentTypeId = 1;
 
     [Parameter]
     public int Id { get; set; }
@@ -33,8 +54,24 @@ else
         _message = "Loading Product";
         var result = await _productService.GetProduct(Id);
         if (!result.Success)
+        {
             _message = result.Message;
+        }
         else
+        {
             _product = result.Data;
+
+            if (_product.Variants.Count > 0)
+            {
+                currentTypeId = _product.Variants[0].ProductTypeId;
+            }
+        }
     }
+
+    private ProductVariant GetSelectedVariant()
+    {
+        var variant = _product.Variants.FirstOrDefault(v => v.ProductTypeId == currentTypeId);
+        return variant;
+    }
+
 }

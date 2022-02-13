@@ -86,6 +86,40 @@ namespace ECommerce.Server.Services.AuthService
             return response;
         }
 
+        // change user password
+        public async Task<ServiceResponse<bool>> ChangePassword(int userId, string newPassword)
+        {
+            // get user making request
+            var user = await _context.Users.FindAsync(userId);
+
+            // no user found
+            if (user is null)
+            {
+                return new ServiceResponse<bool>
+                {
+                    Success = false,
+                    Message = "User not found."
+                };
+            }
+
+            // hash password
+            CreatePasswordHash(newPassword, out byte[] passwordHash, out byte[] passwordSalt);
+
+            // set hash and salt
+            user.PasswordHash = passwordHash;
+            user.PasswordSalt = passwordSalt;
+
+            // save changes
+            await _context.SaveChangesAsync();
+
+            // return response
+            return new ServiceResponse<bool>
+            {
+                Data = true,
+                Message = "Password has been changed"
+            };
+        }
+
         // create json web token
         private string CreateToken(User user)
         {
@@ -105,8 +139,8 @@ namespace ECommerce.Server.Services.AuthService
 
             // create security token
             var token = new JwtSecurityToken(
-                claims: claims, 
-                expires : DateTime.Now.AddDays(1),
+                claims: claims,
+                expires: DateTime.Now.AddDays(1),
                 signingCredentials: credentials);
 
             // create json web token
@@ -118,7 +152,7 @@ namespace ECommerce.Server.Services.AuthService
         private bool VerifyPasswordHash(string password, byte[] passwordHash, byte[] passwordSalt)
         {
             using var hmac = new HMACSHA512(passwordSalt);
-            
+
             // hash attempted password
             var computedHash = hmac.ComputeHash(System.Text.Encoding.UTF8.GetBytes(password));
 

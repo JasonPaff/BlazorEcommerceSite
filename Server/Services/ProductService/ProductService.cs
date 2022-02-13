@@ -8,12 +8,12 @@ namespace ECommerce.Server.Services.ProductService
 {
     public class ProductService : IProductService
     {
-        // database context
         private readonly DataContext _context;
 
+        // inject database context
         public ProductService(DataContext context)
         {
-            _context = context; // inject database context
+            _context = context;
         }
 
         // return all products

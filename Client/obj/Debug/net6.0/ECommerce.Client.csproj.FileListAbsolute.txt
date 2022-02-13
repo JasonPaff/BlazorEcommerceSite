@@ -827,3 +827,7 @@ C:\Users\jason\RiderProjects\ECommerce\Client\obj\Debug\net6.0\scopedcss\Shared\
 C:\Users\jason\RiderProjects\ECommerce\Client\obj\Debug\net6.0\scopedcss\Shared\ShopMenu.razor.rz.scp.css
 C:\Users\jason\RiderProjects\ECommerce\Client\obj\Debug\net6.0\scopedcss\Shared\HomeButton.razor.rz.scp.css
 C:\Users\jason\RiderProjects\ECommerce\Client\obj\Debug\net6.0\scopedcss\Shared\FeaturedProducts.razor.rz.scp.css
+C:\Users\jason\RiderProjects\ECommerce\Client\bin\Debug\net6.0\wwwroot\_framework\Blazored.LocalStorage.dll
+C:\Users\jason\RiderProjects\ECommerce\Client\bin\Debug\net6.0\wwwroot\_framework\Blazored.LocalStorage.dll.gz
+C:\Users\jason\RiderProjects\ECommerce\Client\bin\Debug\net6.0\Blazored.LocalStorage.dll
+C:\Users\jason\RiderProjects\ECommerce\Client\obj\Debug\net6.0\build-gz\QbgeHeRT.gz

@@ -40,6 +40,14 @@ namespace ECommerce.Server.Controllers
             return Ok(result);
         }
         
+        // get products suggestions based on a search term 
+        [HttpGet("searchSuggestions/{searchText}")]
+        public async Task<ActionResult<ServiceResponse<Product>>> GetProductSearchSuggestions(string searchText)
+        {
+            var result = await _productService.GetProductSearchSuggestions(searchText);
+            return Ok(result);
+        }
+        
         // get specific product 
         [HttpGet("category/{categoryUrl}")]
         public async Task<ActionResult<ServiceResponse<Product>>> GetProductsByCategory(string categoryUrl)

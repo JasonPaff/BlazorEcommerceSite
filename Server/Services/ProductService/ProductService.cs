@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
@@ -62,19 +63,62 @@ namespace ECommerce.Server.Services.ProductService
             return response;
         }
 
+        public async Task<ServiceResponse<List<string>>> GetProductSearchSuggestions(string searchText)
+        {
+            var products = await FindProductsBySearchText(searchText);
+            List<string> result = new();
+
+            foreach (var product in products)
+            {
+                // search product titles for words that contain matching text
+                if (product.Title.Contains(searchText, StringComparison.OrdinalIgnoreCase))
+                {
+                    result.Add(product.Title); // add matching titles
+                }
+
+                // search product description for words that contain the text
+                if (product.Description != null)
+                {
+                    // get the punctuation
+                    var punctuation = product.Description.Where(char.IsPunctuation).Distinct().ToArray();
+                    
+                    // get the individual words in the description
+                    var words = product.Description.Split().Select(s => s.Trim(punctuation));
+
+                    // find matching words
+                    foreach (var word in words)
+                    {
+                        if (word.Contains(searchText, StringComparison.OrdinalIgnoreCase) && !result.Contains(word))
+                        {
+                            result.Add(word);
+                        }
+                    }
+                }
+            }
+
+            return new ServiceResponse<List<string>> {Data = result};
+        }
+
         // returns the products based on a text search
         public async Task<ServiceResponse<List<Product>>> SearchProducts(string searchText)
         {
             var response = new ServiceResponse<List<Product>>()
             {
-                Data = await _context.Products
-                    .Where(p => p.Title.ToLower().Contains(searchText.ToLower()) || p.Description.ToLower() // make everything lower case
-                    .Contains(searchText.ToLower())) // match text from title or description
-                    .Include(p => p.Variants) // include variants
-                    .ToListAsync()
+                Data = await FindProductsBySearchText(searchText)
             };
 
             return response;
+        }
+
+        // finds the products based on a text search
+        private async Task<List<Product>> FindProductsBySearchText(string searchText)
+        {
+            return await _context.Products
+                .Where(p => p.Title.ToLower().Contains(searchText.ToLower()) || p.Description
+                    .ToLower() // make everything lower case
+                    .Contains(searchText.ToLower())) // match text from title or description
+                .Include(p => p.Variants) // include variants
+                .ToListAsync();
         }
     }
 }

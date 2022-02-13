@@ -6,7 +6,7 @@
 
 <h3>Shopping Cart</h3>
 
-@if (cartProducts is null || cartProducts.Count is 0)
+@if (cartProducts.Count is 0)
 {
     <span>@message</span>
 }
@@ -23,7 +23,7 @@ else
                     <h5>
                         <a href="/product/@product.ProductId">@product.Title</a>
                     </h5>
-                    <span>@product.ProductType</span>
+                    <span>@product.ProductType</span><br/>
                     <button class="btn-delete" @onclick="@(() => RemoveFromCart(product.ProductId, product.ProductTypeId))">Remove</button>
                 </div>
                 <div class="cart-product-price">

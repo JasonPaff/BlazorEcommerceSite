@@ -8,13 +8,13 @@ build_property.PlatformNeutralAssembly =
 build_property._SupportedPlatformList = Linux,macOS,Windows
 build_property.RootNamespace = ECommerce.Server
 build_property.RootNamespace = ECommerce.Server
-build_property.ProjectDir = C:\Users\jason\RiderProjects\ECommerce\Server\
+build_property.ProjectDir = C:\Users\jason\RiderProjects\ECommerce\server\
 build_property.RazorLangVersion = 6.0
 build_property.SupportLocalizedComponentNames = 
 build_property.GenerateRazorMetadataSourceChecksumAttributes = 
-build_property.MSBuildProjectDirectory = C:\Users\jason\RiderProjects\ECommerce\Server
+build_property.MSBuildProjectDirectory = C:\Users\jason\RiderProjects\ECommerce\server
 build_property._RazorSourceGeneratorDebug = 
 
-[C:/Users/jason/RiderProjects/ECommerce/Server/Pages/Error.cshtml]
+[C:/Users/jason/RiderProjects/ECommerce/server/Pages/Error.cshtml]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcRXJyb3IuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 

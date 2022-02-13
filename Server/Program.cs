@@ -4,6 +4,7 @@ global using ECommerce.Server.Data;
 global using ECommerce.Server.Services.ProductService;
 global using ECommerce.Server.Services.CategoryService;
 global using ECommerce.Server.Services.CartService;
+global using ECommerce.Server.Services.AuthService;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -28,6 +29,7 @@ builder.Services.AddSwaggerGen();
 builder.Services.AddScoped<IProductService, ProductService>();
 builder.Services.AddScoped<ICategoryService, CategoryService>();
 builder.Services.AddScoped<ICartService, CartService>();
+builder.Services.AddScoped<IAuthService, AuthService>();
 
 var app = builder.Build();
 

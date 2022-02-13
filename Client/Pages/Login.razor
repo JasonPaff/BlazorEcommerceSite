@@ -1,6 +1,7 @@
 ﻿@page "/login"
 @using Microsoft.AspNetCore.WebUtilities
 @inject IAuthService _authService
+@inject ICartService _cartService
 @inject NavigationManager _navigationManager
 @inject ILocalStorageService _localStorage
 @inject AuthenticationStateProvider _authenticationStateProvider
@@ -58,6 +59,8 @@
 
             // users authentication state
             await _authenticationStateProvider.GetAuthenticationStateAsync();
+
+            await _cartService.StoreCartItems(true);
             
             // redirect to where the login came from
             _navigationManager.NavigateTo(returnUrl);

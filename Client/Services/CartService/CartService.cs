@@ -27,7 +27,7 @@ namespace ECommerce.Client.Services.CartService
         // add items to cart
         public async Task AddToCart(CartItem cartItem)
         {
-            if (_authStateProvider.GetAuthenticationStateAsync().User.Identity.IsAuthenticated)
+            if ((await _authStateProvider.GetAuthenticationStateAsync()).User.Identity.IsAuthenticated)
             {
                 Console.WriteLine("yes authed");
             }
@@ -126,6 +126,23 @@ namespace ECommerce.Client.Services.CartService
                 // notify of update
                 OnChange?.Invoke();
             }
+        }
+
+        // save cart to database
+        public async Task StoreCartItems(bool emptyLocalCart = false)
+        {
+            // get cart from local storage
+            var localCart = await _localStorage.GetItemAsync<List<CartItem>>("cart");
+            
+            // no cart, return
+            if (localCart is null) return;
+
+            // save cart
+            await _http.PostAsJsonAsync("api/cart", localCart);
+
+            // empty cart if requested
+            if (emptyLocalCart)
+                await _localStorage.RemoveItemAsync("cart");
         }
     }
 }

@@ -1,5 +1,5 @@
 ﻿@using ECommerce.Client.Services.ProductService
-@inject IProductService _productService 
+@inject IProductService _productService
 @implements IDisposable
 
 @if (_productService.Products.Count is 0)
@@ -31,9 +31,17 @@ else
             </li>
         }
     </ul>
+
+    @for (var i = 1; i < _productService.PageCount; i++)
+    {
+        <a class="btn @(i == _productService.CurrentPage ? "btn-info" : "btn-outline-info") page-selection" href="/search/@_productService.LastSearchText/@i">
+            @i
+        </a>
+    }
 }
 
 @code {
+
     protected override void OnInitialized()
     {
         _productService.ProductsChanged += StateHasChanged;
@@ -60,4 +68,5 @@ else
 
         return $"Starting at ${minPrice}";
     }
+
 }

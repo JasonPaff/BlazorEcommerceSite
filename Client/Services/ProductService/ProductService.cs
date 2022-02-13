@@ -16,13 +16,12 @@ namespace ECommerce.Client.Services.ProductService
             _http = http;
         }
 
-        // products list;
         public List<Product> Products { get; set; } = new();
-
-        // search message
         public string Message { get; set; } = "Loading Products...";
+        public int CurrentPage { get; set; } = 1;
+        public int PageCount { get; set; }
+        public string LastSearchText { get; set; } = string.Empty;
 
-        // products changed action
         public event Action ProductsChanged;
 
         // get all products from the products
@@ -35,6 +34,12 @@ namespace ECommerce.Client.Services.ProductService
             if (result is {Data: { }})
                 Products = result.Data;
 
+            CurrentPage = 1;
+            PageCount = 0;
+
+            if (Products.Count is 0)
+                Message = "No products found";
+            
             // fire products changed event
             ProductsChanged.Invoke();
         }
@@ -46,13 +51,22 @@ namespace ECommerce.Client.Services.ProductService
             return result;
         }
 
-        public async Task SearchProducts(string searchText)
+        // search for products matching search text
+        public async Task SearchProducts(string searchText, int page)
         {
+            LastSearchText = searchText;
             var result =
-                await _http.GetFromJsonAsync<ServiceResponse<List<Product>>>($"api/product/search/{searchText}");
+                await _http.GetFromJsonAsync<ServiceResponse<ProductSearchResult>>($"api/product/search/{searchText}/{page}");
 
-            if (result != null && result.Data != null)
-                Products = result.Data;
+            if (result is {Data: { }})
+            {
+                Products = result.Data.Products;
+                CurrentPage = result.Data.CurrentPage;
+                PageCount = result.Data.Pages;
+            }
+
+
+
             if (Products.Count == 0) Message = "No products found.";
 
             ProductsChanged?.Invoke();

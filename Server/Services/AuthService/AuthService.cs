@@ -1,18 +1,26 @@
-﻿using System.Linq;
+﻿using System;
+using System.Collections.Generic;
+using System.IdentityModel.Tokens.Jwt;
+using System.Linq;
+using System.Security.Claims;
 using System.Security.Cryptography;
 using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Configuration;
+using Microsoft.IdentityModel.Tokens;
 
 namespace ECommerce.Server.Services.AuthService
 {
     public class AuthService : IAuthService
     {
         private readonly DataContext _context;
+        private readonly IConfiguration _configuration;
 
-        // inject database context
-        public AuthService(DataContext context)
+        // inject database context, configuration
+        public AuthService(DataContext context, IConfiguration configuration)
         {
             _context = context;
+            _configuration = configuration;
         }
 
         // register user
@@ -73,9 +81,38 @@ namespace ECommerce.Server.Services.AuthService
             }
             // user found and correct password
             else
-                response.Data = "token";
+                response.Data = CreateToken(user);
 
             return response;
+        }
+
+        // create json web token
+        private string CreateToken(User user)
+        {
+            // create claims
+            List<Claim> claims = new()
+            {
+                new Claim(ClaimTypes.NameIdentifier, user.Id.ToString()),
+                new Claim(ClaimTypes.Name, user.Email)
+            };
+
+            // get secret key from config settings
+            var key = new SymmetricSecurityKey(
+                System.Text.Encoding.UTF8.GetBytes(_configuration.GetSection("AppSettings:Token").Value));
+
+            // security credentials
+            var credentials = new SigningCredentials(key, SecurityAlgorithms.HmacSha512Signature);
+
+            // create security token
+            var token = new JwtSecurityToken(
+                claims: claims, 
+                expires : DateTime.Now.AddDays(1),
+                signingCredentials: credentials);
+
+            // create json web token
+            var jwt = new JwtSecurityTokenHandler().WriteToken(token);
+
+            return jwt;
         }
 
         private bool VerifyPasswordHash(string password, byte[] passwordHash, byte[] passwordSalt)

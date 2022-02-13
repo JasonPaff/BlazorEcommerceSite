@@ -19,23 +19,49 @@ namespace ECommerce.Client.Services.CartService
             _localStorage = localStorage;
             _http = http;
         }
-        
+
         public event Action? OnChange;
-        
+
         // add items to cart
         public async Task AddToCart(CartItem cartItem)
         {
             // get cart from local storage, create a new one if no cart is found
             var cart = await _localStorage.GetItemAsync<List<CartItem>>("cart") ?? new List<CartItem>();
-            
+
             // add item to cart
             cart.Add(cartItem);
 
             // update local storage with new cart
             await _localStorage.SetItemAsync("cart", cart);
-            
+
             // notify app of cart count change
             OnChange?.Invoke();
+        }
+
+        // remove an item from the cart
+        public async Task RemoveFromCart(int productId, int productTypeId)
+        {
+            // get the cart items
+            var cart = await GetCartItems();
+
+            // no items to remove
+            if (cart.Count is 0) return;
+
+            // find cart item
+            var cartItem = cart.Find(x => x.ProductId == productId && x.ProductTypeId == productTypeId);
+
+            // remove cart item
+            if (cartItem is not null)
+            {
+                // remove item
+                cart.Remove(cartItem);
+
+                // update cart
+                await _localStorage.SetItemAsync("cart", cart);
+                
+                // notify of update
+                OnChange?.Invoke();
+            }
         }
 
         // return all items in the cart
@@ -50,7 +76,7 @@ namespace ECommerce.Client.Services.CartService
         {
             // get cart items from local storage
             var cartItems = await GetCartItems();
-            
+
             // http post request and response
             var response = await _http.PostAsJsonAsync("api/cart/products", cartItems);
 

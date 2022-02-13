@@ -20,8 +20,11 @@ else
                     <img class="image" src="@product.ImageUrl" alt="@product.Title"/>
                 </div>
                 <div class="name">
-                    <h5><a href="/product/@product.ProductId">@product.Title</a></h5>
+                    <h5>
+                        <a href="/product/@product.ProductId">@product.Title</a>
+                    </h5>
                     <span>@product.ProductType</span>
+                    <button class="btn-delete" @onclick="@(() => RemoveFromCart(product.ProductId, product.ProductTypeId))">Remove</button>
                 </div>
                 <div class="cart-product-price">
                     @product.Price
@@ -38,19 +41,36 @@ else
     private List<CartProductResponse> cartProducts = null;
     private string message = "Loading cart...";
 
+    // load/display cart 
     protected override async Task OnInitializedAsync()
     {
-    // no cart items
+        await LoadCart();
+    }
+
+    // load the cart items
+    private async Task LoadCart()
+    {
+        // no cart items
         if ((await _cartService.GetCartItems()).Count is 0)
         {
             message = "Your cart is empty.";
             cartProducts = new List<CartProductResponse>();
         }
-    // cart items
+        // cart items
         else
         {
             cartProducts = await _cartService.GetCartProducts();
         }
+    }
+
+    // remove product from cart
+    private async Task RemoveFromCart(int productId, int productTypeId)
+    {
+        // remove item
+        await _cartService.RemoveFromCart(productId, productTypeId);
+        
+        // reload cart
+        await LoadCart();
     }
 
 }

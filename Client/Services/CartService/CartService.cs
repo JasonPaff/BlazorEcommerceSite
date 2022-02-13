@@ -4,6 +4,7 @@ using System.Net.Http;
 using System.Net.Http.Json;
 using System.Threading.Tasks;
 using Blazored.LocalStorage;
+using Microsoft.AspNetCore.Components.Authorization;
 
 namespace ECommerce.Client.Services.CartService
 {
@@ -11,12 +12,14 @@ namespace ECommerce.Client.Services.CartService
     {
         private readonly ILocalStorageService _localStorage;
         private readonly HttpClient _http;
+        private readonly AuthenticationStateProvider _authStateProvider;
 
-        // inject local storage service and http client
-        public CartService(ILocalStorageService localStorage, HttpClient http)
+        // inject local storage service, http client, auth state provider
+        public CartService(ILocalStorageService localStorage, HttpClient http, AuthenticationStateProvider authStateProvider)
         {
             _localStorage = localStorage;
             _http = http;
+            _authStateProvider = authStateProvider;
         }
 
         public event Action? OnChange;
@@ -24,6 +27,15 @@ namespace ECommerce.Client.Services.CartService
         // add items to cart
         public async Task AddToCart(CartItem cartItem)
         {
+            if (_authStateProvider.GetAuthenticationStateAsync().User.Identity.IsAuthenticated)
+            {
+                Console.WriteLine("yes authed");
+            }
+            else
+            {
+                Console.WriteLine("no authed");
+            }
+            
             // get cart from local storage, create a new one if no cart is found
             var cart = await _localStorage.GetItemAsync<List<CartItem>>("cart") ?? new List<CartItem>();
 

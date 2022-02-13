@@ -57,5 +57,20 @@ namespace ECommerce.Server.Services.CartService
 
             return result;
         }
+
+        // store users cart in database
+        public async Task<ServiceResponse<List<CartProductResponse>>> StoreCartItems(List<CartItem> cartItems, int userId)
+        {
+            // set user id
+            cartItems.ForEach(cartItem => cartItem.UserId = userId);
+            
+            // add items
+            _context.CartItems.AddRange(cartItems);
+            
+            // save cart
+            await _context.SaveChangesAsync();
+
+            return await GetCartProducts(await _context.CartItems.Where(ci => ci.UserId == userId).ToListAsync());
+        }
     }
 }

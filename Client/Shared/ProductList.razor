@@ -1,6 +1,6 @@
 ﻿@using ECommerce.Client.Services.ProductService
-<!-- inject product service -->
 @inject IProductService _productService 
+@implements IDisposable
 
 @if (_productService.Products.Count is 0)
 {
@@ -34,9 +34,14 @@ else
 }
 
 @code {
-    protected override async Task OnInitializedAsync()
+    protected override void OnInitialized()
     {
-        // fill products service Products property with database products
-        await _productService.GetProducts();
+        _productService.ProductsChanged += StateHasChanged;
     }
+
+    public void Dispose()
+    {
+        _productService.ProductsChanged -= StateHasChanged;
+    }
+
 }

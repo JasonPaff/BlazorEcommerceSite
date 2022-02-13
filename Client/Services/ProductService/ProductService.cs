@@ -24,7 +24,7 @@ namespace ECommerce.Client.Services.ProductService
 
         public event Action ProductsChanged;
 
-        // get all products from the products
+        // get all products
         public async Task GetProducts(string? categoryUrl = null)
         {
             // get all products or category specific products
@@ -64,8 +64,6 @@ namespace ECommerce.Client.Services.ProductService
                 CurrentPage = result.Data.CurrentPage;
                 PageCount = result.Data.Pages;
             }
-
-
 
             if (Products.Count == 0) Message = "No products found.";
 

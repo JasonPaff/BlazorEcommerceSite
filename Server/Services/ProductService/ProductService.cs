@@ -32,12 +32,13 @@ namespace ECommerce.Server.Services.ProductService
         // return a single product
         public async Task<ServiceResponse<Product>> GetProductAsync(int productId)
         {
-            var response = new ServiceResponse<Product>();
             var product = await _context.Products
                 .Include(p => p.Variants) // include Variants
                 .ThenInclude(v => v.ProductType) // include ProductTypes
                 .FirstOrDefaultAsync(p => p.Id == productId);
 
+            var response = new ServiceResponse<Product>();
+            
             if (product is null)
             {
                 response.Success = false;
@@ -116,7 +117,7 @@ namespace ECommerce.Server.Services.ProductService
         // returns the products based on a text search
         public async Task<ServiceResponse<ProductSearchResult>> SearchProducts(string searchText, int page)
         {
-            var pageResults = 2f;
+            const float pageResults = 2f;
             var pageCount = Math.Ceiling((await FindProductsBySearchText(searchText)).Count / pageResults);
             var products = await _context.Products
                 .Where(p => p.Title.ToLower().Contains(searchText.ToLower()) || p.Description

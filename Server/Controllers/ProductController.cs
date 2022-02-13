@@ -16,7 +16,7 @@ namespace ECommerce.Server.Controllers
             _productService = productService;
         }
         
-        // get all products from product service
+        // get all products
         [HttpGet] 
         public async Task<ActionResult<ServiceResponse<List<Product>>>> GetProducts()
         {
@@ -24,7 +24,7 @@ namespace ECommerce.Server.Controllers
             return Ok(result);
         }
 
-        // get specific product from product service
+        // get specific product
         [HttpGet("{productId:int}")]
         public async Task<ActionResult<ServiceResponse<Product>>> GetProduct(int productId)
         {
@@ -32,7 +32,15 @@ namespace ECommerce.Server.Controllers
             return Ok(result);
         }
         
-        // get specific product from product service
+        // get products based on a search term 
+        [HttpGet("search/{searchText}")]
+        public async Task<ActionResult<ServiceResponse<Product>>> GetProduct(string searchText)
+        {
+            var result = await _productService.SearchProducts(searchText);
+            return Ok(result);
+        }
+        
+        // get specific product 
         [HttpGet("category/{categoryUrl}")]
         public async Task<ActionResult<ServiceResponse<Product>>> GetProductsByCategory(string categoryUrl)
         {

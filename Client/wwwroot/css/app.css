@@ -67,6 +67,9 @@ a, .btn-link {
     color: green;
 }
 
+.original-price {
+    text-decoration: line-through;
+}
 
 .media {
     display: flex;

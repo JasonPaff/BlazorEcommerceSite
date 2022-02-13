@@ -33,7 +33,7 @@ namespace ECommerce.Server.Services.ProductService
         {
             var response = new ServiceResponse<Product>();
             var product = await _context.Products
-                .Include(p => p.Variants)// include Variants
+                .Include(p => p.Variants) // include Variants
                 .ThenInclude(v => v.ProductType) // include ProductTypes
                 .FirstOrDefaultAsync(p => p.Id == productId);
 
@@ -54,8 +54,23 @@ namespace ECommerce.Server.Services.ProductService
             var response = new ServiceResponse<List<Product>>
             {
                 Data = await _context.Products
-                    .Where(p => p.Category.Url.ToLower().Equals(categoryUrl.ToLower()))// matching category
+                    .Where(p => p.Category.Url.ToLower().Equals(categoryUrl.ToLower())) // matching category
                     .Include(p => p.Variants) // include Variants
+                    .ToListAsync()
+            };
+
+            return response;
+        }
+
+        // returns the products based on a text search
+        public async Task<ServiceResponse<List<Product>>> SearchProducts(string searchText)
+        {
+            var response = new ServiceResponse<List<Product>>()
+            {
+                Data = await _context.Products
+                    .Where(p => p.Title.ToLower().Contains(searchText.ToLower()) || p.Description.ToLower() // make everything lower case
+                    .Contains(searchText.ToLower())) // match text from title or description
+                    .Include(p => p.Variants) // include variants
                     .ToListAsync()
             };
 

@@ -49,3 +49,11 @@ build_metadata.AdditionalFiles.CssScope = b-s4rni3g0pg
 [C:/Users/jason/RiderProjects/ECommerce/Client/Shared/ProductList.razor]
 build_metadata.AdditionalFiles.TargetPath = U2hhcmVkXFByb2R1Y3RMaXN0LnJhem9y
 build_metadata.AdditionalFiles.CssScope = b-rxx37a9f1p
+
+[C:/Users/jason/RiderProjects/ECommerce/Client/Shared/ShopLayout.razor]
+build_metadata.AdditionalFiles.TargetPath = U2hhcmVkXFNob3BMYXlvdXQucmF6b3I=
+build_metadata.AdditionalFiles.CssScope = b-rr6n7ulru9
+
+[C:/Users/jason/RiderProjects/ECommerce/Client/Shared/ShopMenu.razor]
+build_metadata.AdditionalFiles.TargetPath = U2hhcmVkXFNob3BNZW51LnJhem9y
+build_metadata.AdditionalFiles.CssScope = b-kb86ynjenm

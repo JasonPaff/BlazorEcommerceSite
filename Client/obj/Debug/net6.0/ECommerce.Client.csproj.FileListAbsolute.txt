@@ -823,3 +823,5 @@ C:\Users\jason\RiderProjects\ECommerce\Client\obj\Debug\net6.0\ref\ECommerce.Cli
 C:\Users\jason\RiderProjects\ECommerce\Client\obj\Debug\net6.0\ECommerce.Client.pdb
 C:\Users\jason\RiderProjects\ECommerce\Client\obj\Debug\net6.0\scopedcss\Shared\ProductList.razor.rz.scp.css
 C:\Users\jason\RiderProjects\ECommerce\Client\obj\Debug\net6.0\scopedcss\Pages\ProductDetails.razor.rz.scp.css
+C:\Users\jason\RiderProjects\ECommerce\Client\obj\Debug\net6.0\scopedcss\Shared\ShopLayout.razor.rz.scp.css
+C:\Users\jason\RiderProjects\ECommerce\Client\obj\Debug\net6.0\scopedcss\Shared\ShopMenu.razor.rz.scp.css

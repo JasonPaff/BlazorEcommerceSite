@@ -1,5 +1,7 @@
 ﻿using System.Collections.Generic;
+using System.Security.Claims;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace ECommerce.Server.Controllers
@@ -45,6 +47,24 @@ namespace ECommerce.Server.Controllers
                 return BadRequest(response);
             }
 
+            return Ok(response);
+        }
+
+        // change user password, must be authorized
+        [HttpPost("change-password"), Authorize]
+        public async Task<ActionResult<ServiceResponse<bool>>> ChangePassword([FromBody] string newPassword)
+        {
+            // get user
+            var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
+            
+            // change password
+            var response = await _authService.ChangePassword(int.Parse(userId), newPassword);
+
+            // failed
+            if (!response.Success)
+                return BadRequest(response);
+
+            // succeeded
             return Ok(response);
         }
     }

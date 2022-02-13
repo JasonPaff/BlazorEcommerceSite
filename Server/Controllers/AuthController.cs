@@ -16,6 +16,7 @@ namespace ECommerce.Server.Controllers
             _authService = authService;
         }
 
+        // register user route
         [HttpPost("register")]
         public async Task<ActionResult<ServiceResponse<int>>> Register(UserRegister request)
         {
@@ -30,6 +31,20 @@ namespace ECommerce.Server.Controllers
             if (!response.Success) return BadRequest(response);
             
             // register succeeded
+            return Ok(response);
+        }
+        
+        // login user route
+        [HttpPost("login")]
+        public async Task<ActionResult<ServiceResponse<string>>> Login(UserLogin request)
+        {
+            var response = await _authService.Login(request.Email, request.Password);
+
+            if (!response.Success)
+            {
+                return BadRequest(response);
+            }
+
             return Ok(response);
         }
     }

@@ -11,5 +11,6 @@ namespace ECommerce.Client.Services.CartService
         Task RemoveFromCart(int productId, int productType);
         Task<List<CartItem>> GetCartItems();
         Task<List<CartProductResponse>> GetCartProducts();
+        Task UpdateQuantity(CartProductResponse product);
     }
 }

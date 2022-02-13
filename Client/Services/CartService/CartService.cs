@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Diagnostics.CodeAnalysis;
 using System.Net.Http;
 using System.Net.Http.Json;
 using System.Threading.Tasks;
@@ -28,8 +27,13 @@ namespace ECommerce.Client.Services.CartService
             // get cart from local storage, create a new one if no cart is found
             var cart = await _localStorage.GetItemAsync<List<CartItem>>("cart") ?? new List<CartItem>();
 
-            // add item to cart
-            cart.Add(cartItem);
+            // check for item in cart already
+            var sameItem =
+                cart.Find(x => x.ProductId == cartItem.ProductId && x.ProductTypeId == cartItem.ProductTypeId);
+            
+            // add item to cart or increase quantity of existing item
+            if (sameItem is null) cart.Add(cartItem);
+            else sameItem.Quantity += cartItem.Quantity;
 
             // update local storage with new cart
             await _localStorage.SetItemAsync("cart", cart);
@@ -84,6 +88,32 @@ namespace ECommerce.Client.Services.CartService
             var cartProducts = await response.Content.ReadFromJsonAsync<ServiceResponse<List<CartProductResponse>>>();
 
             return cartProducts.Data;
+        }
+
+        // update cart item quantity
+        public async Task UpdateQuantity(CartProductResponse product)
+        {
+            // get the cart items
+            var cart = await GetCartItems();
+
+            // no items to remove
+            if (cart.Count is 0) return;
+
+            // find cart item
+            var cartItem = cart.Find(x => x.ProductId == product.ProductId && x.ProductTypeId == product.ProductTypeId);
+
+            // update cart item quantity
+            if (cartItem is not null)
+            {
+                // update quantity
+                cartItem.Quantity = product.Quantity;
+                
+                // update cart
+                await _localStorage.SetItemAsync("cart", cart);
+                
+                // notify of update
+                OnChange?.Invoke();
+            }
         }
     }
 }

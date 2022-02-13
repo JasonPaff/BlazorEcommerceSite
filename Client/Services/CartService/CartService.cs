@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
+using System.Net.Http;
+using System.Net.Http.Json;
 using System.Threading.Tasks;
 using Blazored.LocalStorage;
 
@@ -9,11 +11,13 @@ namespace ECommerce.Client.Services.CartService
     public class CartService : ICartService
     {
         private readonly ILocalStorageService _localStorage;
+        private readonly HttpClient _http;
 
-        // inject local storage service
-        public CartService(ILocalStorageService localStorage)
+        // inject local storage service and http client
+        public CartService(ILocalStorageService localStorage, HttpClient http)
         {
             _localStorage = localStorage;
+            _http = http;
         }
         
         public event Action? OnChange;
@@ -39,6 +43,21 @@ namespace ECommerce.Client.Services.CartService
         {
             // get cart from local storage, create a new one if no cart is found
             return await _localStorage.GetItemAsync<List<CartItem>>("cart") ?? new List<CartItem>();
+        }
+
+        // return all products based on cart items
+        public async Task<List<CartProductResponse>> GetCartProducts()
+        {
+            // get cart items from local storage
+            var cartItems = await GetCartItems();
+            
+            // http post request and response
+            var response = await _http.PostAsJsonAsync("api/cart/products", cartItems);
+
+            // get cart products from response
+            var cartProducts = await response.Content.ReadFromJsonAsync<ServiceResponse<List<CartProductResponse>>>();
+
+            return cartProducts.Data;
         }
     }
 }

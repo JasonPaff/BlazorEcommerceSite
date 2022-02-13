@@ -17,7 +17,7 @@ namespace ECommerce.Server.Controllers
         }
 
         // get cart items
-        [HttpPost("product")]
+        [HttpPost("products")]
         public async Task<ActionResult<ServiceResponse<List<CartProductResponse>>>> GetCartProducts(
             List<CartItem> cartItems)
         {

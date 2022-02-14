@@ -2,6 +2,7 @@ global using ECommerce.Shared;
 global using ECommerce.Client.Services.ProductService;
 global using ECommerce.Client.Services.CategoryService;
 global using ECommerce.Client.Services.OrderService;
+global using ECommerce.Client.Services.AddressService;
 global using ECommerce.Client.Services.AuthService;
 using System;
 using System.Net.Http;
@@ -29,6 +30,7 @@ builder.Services.AddScoped<IProductService, ProductService>();
 builder.Services.AddScoped<ICategoryService, CategoryService>();
 builder.Services.AddScoped<ICartService, CartService>();
 builder.Services.AddScoped<IOrderService, OrderService>();
+builder.Services.AddScoped<IAddressService, AddressService>();
 builder.Services.AddScoped<IAuthService, AuthService>();
 
 // authentication

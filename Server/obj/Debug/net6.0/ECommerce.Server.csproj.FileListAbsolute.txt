@@ -248,7 +248,6 @@ C:\Users\jason\RiderProjects\ECommerce\Server\bin\Debug\net6.0\zh-Hans\Microsoft
 C:\Users\jason\RiderProjects\ECommerce\Server\bin\Debug\net6.0\zh-Hant\Microsoft.CodeAnalysis.Workspaces.MSBuild.resources.dll
 C:\Users\jason\RiderProjects\ECommerce\Server\bin\Debug\net6.0\runtimes\win-arm\lib\net6.0\dotnet-aspnet-codegenerator-design.exe
 C:\Users\jason\RiderProjects\ECommerce\Server\bin\Debug\net6.0\runtimes\win-arm64\lib\net6.0\dotnet-aspnet-codegenerator-design.exe
-C:\Users\jason\RiderProjects\ECommerce\Server\bin\Debug\net6.0\runtimes\win\lib\netstandard2.0\System.Security.Cryptography.ProtectedData.dll
 C:\Users\jason\RiderProjects\ECommerce\Server\bin\Debug\net6.0\Microsoft.OpenApi.dll
 C:\Users\jason\RiderProjects\ECommerce\Server\bin\Debug\net6.0\Swashbuckle.AspNetCore.Swagger.dll
 C:\Users\jason\RiderProjects\ECommerce\Server\bin\Debug\net6.0\Swashbuckle.AspNetCore.SwaggerGen.dll
@@ -280,11 +279,13 @@ C:\Users\jason\RiderProjects\ECommerce\Server\bin\Debug\net6.0\runtimes\win-arm\
 C:\Users\jason\RiderProjects\ECommerce\Server\bin\Debug\net6.0\runtimes\win-arm64\native\Microsoft.Data.SqlClient.SNI.dll
 C:\Users\jason\RiderProjects\ECommerce\Server\bin\Debug\net6.0\runtimes\win-x64\native\Microsoft.Data.SqlClient.SNI.dll
 C:\Users\jason\RiderProjects\ECommerce\Server\bin\Debug\net6.0\runtimes\win-x86\native\Microsoft.Data.SqlClient.SNI.dll
-C:\Users\jason\RiderProjects\ECommerce\Server\bin\Debug\net6.0\runtimes\win\lib\netcoreapp3.0\Microsoft.Win32.SystemEvents.dll
-C:\Users\jason\RiderProjects\ECommerce\Server\bin\Debug\net6.0\runtimes\unix\lib\netcoreapp3.0\System.Drawing.Common.dll
-C:\Users\jason\RiderProjects\ECommerce\Server\bin\Debug\net6.0\runtimes\win\lib\netcoreapp3.0\System.Drawing.Common.dll
 C:\Users\jason\RiderProjects\ECommerce\Server\bin\Debug\net6.0\runtimes\win\lib\netstandard2.0\System.Runtime.Caching.dll
-C:\Users\jason\RiderProjects\ECommerce\Server\bin\Debug\net6.0\runtimes\win\lib\netcoreapp3.0\System.Windows.Extensions.dll
 C:\Users\jason\RiderProjects\ECommerce\Server\bin\Debug\net6.0\Blazored.LocalStorage.dll
 C:\Users\jason\RiderProjects\ECommerce\Server\bin\Debug\net6.0\Microsoft.AspNetCore.Components.Authorization.dll
 C:\Users\jason\RiderProjects\ECommerce\Server\bin\Debug\net6.0\Microsoft.AspNetCore.Authentication.JwtBearer.dll
+C:\Users\jason\RiderProjects\ECommerce\Server\bin\Debug\net6.0\Stripe.net.dll
+C:\Users\jason\RiderProjects\ECommerce\Server\bin\Debug\net6.0\runtimes\win\lib\net6.0\Microsoft.Win32.SystemEvents.dll
+C:\Users\jason\RiderProjects\ECommerce\Server\bin\Debug\net6.0\runtimes\unix\lib\net6.0\System.Drawing.Common.dll
+C:\Users\jason\RiderProjects\ECommerce\Server\bin\Debug\net6.0\runtimes\win\lib\net6.0\System.Drawing.Common.dll
+C:\Users\jason\RiderProjects\ECommerce\Server\bin\Debug\net6.0\runtimes\win\lib\net6.0\System.Security.Cryptography.ProtectedData.dll
+C:\Users\jason\RiderProjects\ECommerce\Server\bin\Debug\net6.0\runtimes\win\lib\net6.0\System.Windows.Extensions.dll

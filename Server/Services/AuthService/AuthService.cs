@@ -28,6 +28,7 @@ namespace ECommerce.Server.Services.AuthService
 
         // get user id from http context
         public int GetUserId() => int.Parse(_httpContextAccessor.HttpContext.User.FindFirstValue(ClaimTypes.NameIdentifier));
+        public string GetUserEmail() => _httpContextAccessor.HttpContext.User.FindFirstValue(ClaimTypes.Name);
 
         // return true if user exists
         public async Task<bool> UserExists(string email)

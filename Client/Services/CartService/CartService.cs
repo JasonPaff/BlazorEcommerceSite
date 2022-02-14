@@ -112,6 +112,19 @@ namespace ECommerce.Client.Services.CartService
         // update cart item quantity
         public async Task UpdateQuantity(CartProductResponse product)
         {
+            if (await IsUserAuthenticated())
+            {
+                var request = new CartItem
+                {
+                    ProductId = product.ProductId,
+                    Quantity = product.Quantity,
+                    ProductTypeId = product.ProductTypeId
+                };
+                await _http.PutAsJsonAsync("api/cart/update-quantity", request);
+
+                return;
+            }
+            
             // get the cart items
             var cart = await _localStorage.GetItemAsync<List<CartItem>>("cart");
 
@@ -131,7 +144,7 @@ namespace ECommerce.Client.Services.CartService
                 await _localStorage.SetItemAsync("cart", cart);
 
                 // notify of update
-                OnChange?.Invoke();
+                //OnChange?.Invoke();
             }
         }
 

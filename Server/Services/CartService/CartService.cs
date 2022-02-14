@@ -114,5 +114,33 @@ namespace ECommerce.Server.Services.CartService
 
             return new ServiceResponse<bool> {Data = true};
         }
+
+        // update cart quantity in database
+        public async Task<ServiceResponse<bool>> UpdateQuantity(CartItem cartItem)
+        {            
+            // set user id
+            cartItem.UserId = GetUserId();
+            
+            // look for item in database
+            var dbCartItem = await _context.CartItems.FirstOrDefaultAsync(ci =>
+                ci.ProductId == cartItem.ProductId && ci.ProductTypeId == cartItem.ProductTypeId &&
+                ci.UserId == cartItem.UserId);
+
+            // no item, failure
+            if (dbCartItem is null) return new ServiceResponse<bool>
+            {
+                Data = false,
+                Success = false,
+                Message = "Cart item does not exist."
+            };
+
+            // update cart item quantity
+            dbCartItem.Quantity = cartItem.Quantity;
+            
+            // save changes to database
+            await _context.SaveChangesAsync();
+
+            return new ServiceResponse<bool> {Data = true};
+        }
     }
 }

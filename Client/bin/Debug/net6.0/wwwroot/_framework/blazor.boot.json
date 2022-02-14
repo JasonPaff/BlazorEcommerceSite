@@ -201,14 +201,14 @@
       "netstandard.dll": "sha256-+9Yr\/gSP3tCZAMbOdAcGhHGuMcyg\/AaxVKtt3tGsvao=",
       "System.Private.CoreLib.dll": "sha256-SnxOe5QK250duVAQOw0iWr1sODhUuVEUykExQyQ\/WSk=",
       "ECommerce.Shared.dll": "sha256-AwidEOvs+5Wn3zAjblTssfATItsud1sN0Yrew57kt2E=",
-      "ECommerce.Client.dll": "sha256-lx\/QFBVI8gh95MH0jBZaCG2EER4\/O55zyvPA\/WndBRA="
+      "ECommerce.Client.dll": "sha256-M2Aht4RmdZZLIxGZt+QiaGF+sRAAmlqMALu9kvjIqRk="
     },
     "extensions": null,
     "lazyAssembly": null,
     "libraryInitializers": null,
     "pdb": {
       "ECommerce.Shared.pdb": "sha256-CjfBq5X7\/8zia2vW+y5XFLghQM6ruwYkpjtHMqeRYbk=",
-      "ECommerce.Client.pdb": "sha256-gEA8jVaiuGzZBhwkuc3BcqIBd0TBv9ko2DQXgLhjpkE="
+      "ECommerce.Client.pdb": "sha256-4IM8oUacEAvYPhRnSA\/puCA+sIiBxExkC5PKp6fUSos="
     },
     "runtime": {
       "dotnet.6.0.2.734ruau6x2.js": "sha256-wbTVn69TU0+WI83iB+kky8tf\/BjZdYJeM0rUP96ur\/c=",

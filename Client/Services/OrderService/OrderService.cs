@@ -21,12 +21,16 @@ namespace ECommerce.Client.Services.OrderService
         }
         
         // place order
-        public async Task PlaceOrder()
+        public async Task<string> PlaceOrder()
         {
             if (await _authService.IsUserAuthenticated())
-                await _http.PostAsync("api/order", null);
+            {
+                var result = await _http.PostAsync("api/payment/checkout", null);
+                var url = await result.Content.ReadAsStringAsync();
+                return url;
+            }
             else
-                _navigationManager.NavigateTo("login");
+                return "login";
         }
 
         // get orders

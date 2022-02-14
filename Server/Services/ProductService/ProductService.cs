@@ -121,8 +121,7 @@ namespace ECommerce.Server.Services.ProductService
             var pageCount = Math.Ceiling((await FindProductsBySearchText(searchText)).Count / pageResults);
             var products = await _context.Products
                 .Where(p => p.Title.ToLower().Contains(searchText.ToLower()) || p.Description
-                .ToLower() // make everything lower case
-                .Contains(searchText.ToLower())) // match text from title or description
+                    .ToLower().Contains(searchText.ToLower())) // match text from title or description
                 .Include(p => p.Variants) // include variants
                 .Skip((page - 1) * (int) pageResults)
                 .Take((int) pageResults)

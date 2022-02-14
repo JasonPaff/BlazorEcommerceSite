@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "PCIlVan8pL8iYp4A8Ry52zoxayAO7EtwivAZ7eVOC8I=",
+  "Hash": "tSIFHMHI/WnPMgsJZXEEo8DqkFdN+a8dqGBc/3m+6Bs=",
   "Source": "ECommerce.Server",
   "BasePath": "_content/ECommerce.Server",
   "Mode": "Default",
@@ -11,10 +11,10 @@
       "Version": 2,
       "Source": "ECommerce.Client",
       "GetPublishAssetsTargets": "ComputeFilesToPublish;GetCurrentProjectPublishStaticWebAssetItems",
-      "AdditionalPublishProperties": "BuildProjectReferences=false;ResolveAssemblyReferencesFindRelatedSatellites=true;_PublishingBlazorWasmProject=true;Configuration=Debug;Platform=AnyCPU",
+      "AdditionalPublishProperties": "BuildProjectReferences=false;ResolveAssemblyReferencesFindRelatedSatellites=true;_PublishingBlazorWasmProject=true",
       "AdditionalPublishPropertiesToRemove": "NoBuild;RuntimeIdentifier;WebPublishProfileFile;TargetFramework",
       "GetBuildAssetsTargets": "GetCurrentProjectBuildStaticWebAssetItems",
-      "AdditionalBuildProperties": "Configuration=Debug;Platform=AnyCPU",
+      "AdditionalBuildProperties": "",
       "AdditionalBuildPropertiesToRemove": "WebPublishProfileFile;TargetFramework"
     }
   ],

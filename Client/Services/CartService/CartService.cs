@@ -39,7 +39,6 @@ namespace ECommerce.Client.Services.CartService
 
                 return;
             }
-            
             // user is not authenticated
 
             // get cart from local storage, create a new one if no cart is found
@@ -166,6 +165,9 @@ namespace ECommerce.Client.Services.CartService
                 var cart = await _localStorage.GetItemAsync<List<CartItem>>("cart");
                 await _localStorage.SetItemAsync<int>("cartItemsCount", cart?.Count ?? 0);
             }
+            
+            // notify ui of change
+            OnChange?.Invoke();
         }
 
         // true/false if user is authenticated

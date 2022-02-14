@@ -97,10 +97,13 @@ namespace ECommerce.Server.Services.CartService
         // add item to cart in database
         public async Task<ServiceResponse<bool>> AddToCart(CartItem cartItem)
         {
+            // set user id
+            cartItem.UserId = GetUserId();
+            
             // look for item in database
             var sameItem = await _context.CartItems.FirstOrDefaultAsync(ci =>
                 ci.ProductId == cartItem.ProductId && ci.ProductTypeId == cartItem.ProductTypeId &&
-                ci.UserId == GetUserId());
+                ci.UserId == cartItem.UserId);
 
             // add item or update quantity depending
             if (sameItem is null) _context.CartItems.Add(cartItem);

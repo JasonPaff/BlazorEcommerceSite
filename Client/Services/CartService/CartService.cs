@@ -28,14 +28,25 @@ namespace ECommerce.Client.Services.CartService
         // add items to cart
         public async Task AddToCart(CartItem cartItem)
         {
-            await IsUserAuthenticated();
+            // user is authenticated
+            if (await IsUserAuthenticated())
+            {
+                // get cart from database
+                await _http.PostAsJsonAsync("api/cart/add", cartItem);
+
+                // update cart items count
+                await GetCartItemsCount();
+
+                return;
+            }
+            
+            // user is not authenticated
 
             // get cart from local storage, create a new one if no cart is found
             var cart = await _localStorage.GetItemAsync<List<CartItem>>("cart") ?? new List<CartItem>();
 
             // check for item in cart already
-            var sameItem =
-                cart.Find(x => x.ProductId == cartItem.ProductId && x.ProductTypeId == cartItem.ProductTypeId);
+            var sameItem = cart.Find(x => x.ProductId == cartItem.ProductId && x.ProductTypeId == cartItem.ProductTypeId);
 
             // add item to cart or increase quantity of existing item
             if (sameItem is null) cart.Add(cartItem);
@@ -47,7 +58,6 @@ namespace ECommerce.Client.Services.CartService
             // update cart items count
             await GetCartItemsCount();
         }
-
 
         // remove an item from the cart
         public async Task RemoveFromCart(int productId, int productTypeId)
@@ -88,14 +98,14 @@ namespace ECommerce.Client.Services.CartService
                 var cartItems = await _localStorage.GetItemAsync<List<CartItem>>("cart");
 
                 if (cartItems is null) return new List<CartProductResponse>();
-                
+
                 // http post request and response
                 var response = await _http.PostAsJsonAsync("api/cart/products", cartItems);
 
                 // get cart products from response
                 var cartProducts =
                     await response.Content.ReadFromJsonAsync<ServiceResponse<List<CartProductResponse>>>();
-                
+
                 return cartProducts.Data;
             }
         }

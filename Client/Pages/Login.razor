@@ -63,6 +63,7 @@
             // store cart itmes
             await _cartService.StoreCartItems(true);
 
+            // update cart item count
             await _cartService.GetCartItemsCount();
             
             // redirect to where the login came from

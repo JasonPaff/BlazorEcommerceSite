@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Linq;
 using System.Collections.Generic;
 using System.Security.Claims;
 using System.Threading.Tasks;
@@ -58,6 +59,9 @@ namespace ECommerce.Server.Services.OrderService
             // add order to database
             _context.Orders.Add(order);
 
+            // remove cart items
+            _context.CartItems.RemoveRange(_context.CartItems.Where(ci => ci.UserId == GetUserId()));
+            
             // save changes to database
             await _context.SaveChangesAsync();
 

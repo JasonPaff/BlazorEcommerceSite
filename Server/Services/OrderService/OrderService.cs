@@ -11,19 +11,15 @@ namespace ECommerce.Server.Services.OrderService
     {
         private readonly DataContext _context;
         private readonly ICartService _cartService;
-        private readonly IHttpContextAccessor _httpContextAccessor;
+        private readonly IAuthService _authService;
 
         // inject database context, cart service, http context service
-        public OrderService(DataContext context, ICartService cartService, IHttpContextAccessor httpContextAccessor)
+        public OrderService(DataContext context, ICartService cartService, IAuthService authService)
         {
             _context = context;
             _cartService = cartService;
-            _httpContextAccessor = httpContextAccessor;
+            _authService = authService;
         }
-
-        // get user id from http context
-        private int GetUserId() =>
-            int.Parse(_httpContextAccessor.HttpContext.User.FindFirstValue(ClaimTypes.NameIdentifier));
 
         // place an order
         public async Task<ServiceResponse<bool>> PlaceOrder()
@@ -50,7 +46,7 @@ namespace ECommerce.Server.Services.OrderService
             // create order
             var order = new Order
             {
-                UserId = GetUserId(),
+                UserId = _authService.GetUserId(),
                 OrderDate = DateTime.Now,
                 TotalPrice = totalPrice,
                 OrderItems = orderItems
@@ -60,7 +56,7 @@ namespace ECommerce.Server.Services.OrderService
             _context.Orders.Add(order);
 
             // remove cart items
-            _context.CartItems.RemoveRange(_context.CartItems.Where(ci => ci.UserId == GetUserId()));
+            _context.CartItems.RemoveRange(_context.CartItems.Where(ci => ci.UserId == _authService.GetUserId()));
             
             // save changes to database
             await _context.SaveChangesAsync();

@@ -5,6 +5,7 @@ using System.Linq;
 using System.Security.Claims;
 using System.Security.Cryptography;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Http;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.IdentityModel.Tokens;
@@ -15,12 +16,23 @@ namespace ECommerce.Server.Services.AuthService
     {
         private readonly DataContext _context;
         private readonly IConfiguration _configuration;
+        private readonly IHttpContextAccessor _httpContextAccessor;
 
-        // inject database context, configuration
-        public AuthService(DataContext context, IConfiguration configuration)
+        // inject database context, configuration, http context accessor
+        public AuthService(DataContext context, IConfiguration configuration, IHttpContextAccessor httpContextAccessor)
         {
             _context = context;
             _configuration = configuration;
+            _httpContextAccessor = httpContextAccessor;
+        }
+
+        // get user id from http context
+        public int GetUserId() => int.Parse(_httpContextAccessor.HttpContext.User.FindFirstValue(ClaimTypes.NameIdentifier));
+
+        // return true if user exists
+        public async Task<bool> UserExists(string email)
+        {
+            return await _context.Users.AnyAsync(user => user.Email.ToLower().Equals(email.ToLower()));
         }
 
         // register user
@@ -52,13 +64,7 @@ namespace ECommerce.Server.Services.AuthService
             // return user id
             return new ServiceResponse<int> {Data = user.Id};
         }
-
-        // return true if user exists
-        public async Task<bool> UserExists(string email)
-        {
-            return await _context.Users.AnyAsync(user => user.Email.ToLower().Equals(email.ToLower()));
-        }
-
+        
         // login user
         public async Task<ServiceResponse<string>> Login(string email, string password)
         {
@@ -119,6 +125,7 @@ namespace ECommerce.Server.Services.AuthService
                 Message = "Password has been changed"
             };
         }
+
 
         // create json web token
         private string CreateToken(User user)

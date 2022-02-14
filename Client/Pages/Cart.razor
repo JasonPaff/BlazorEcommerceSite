@@ -11,6 +11,10 @@
 {
     <span>@message</span>
 }
+else if (orderPlaced)
+{
+    <span>Thank you for your order! You can check your orders <a href="orders">here</a></span>
+}
 else
 {
     <div>
@@ -43,10 +47,12 @@ else
 @code {
     private List<CartProductResponse> cartProducts = null;
     private string message = "Loading cart...";
-
+    private bool orderPlaced = false;
+    
     // load/display cart 
     protected override async Task OnInitializedAsync()
     {
+        orderPlaced = false;
         await LoadCart();
     }
 
@@ -89,6 +95,13 @@ else
     // place order
     private async Task PlaceOrder()
     {
+        // place order
         await _orderService.PlaceOrder();
+        
+        // reload cart count
+        await _cartService.GetCartItemsCount();
+        
+        // flag order placed
+        orderPlaced = true;
     }
 }

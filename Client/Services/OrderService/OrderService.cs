@@ -1,4 +1,6 @@
-﻿using System.Net.Http;
+﻿using System.Collections.Generic;
+using System.Net.Http;
+using System.Net.Http.Json;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Components;
 using Microsoft.AspNetCore.Components.Authorization;
@@ -27,7 +29,14 @@ namespace ECommerce.Client.Services.OrderService
             else
                 _navigationManager.NavigateTo("login");
         }
-        
+
+        // get orders
+        public async Task<List<OrderOverviewResponse>> GetOrders()
+        {
+            var result = await _http.GetFromJsonAsync<ServiceResponse<List<OrderOverviewResponse>>>("api/order");
+            return result.Data;
+        }
+
         // true/false if user is authenticated
         private async Task<bool> IsUserAuthenticated()
         {

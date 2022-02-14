@@ -61,6 +61,16 @@ namespace ECommerce.Client.Services.CartService
         // remove an item from the cart
         public async Task RemoveFromCart(int productId, int productTypeId)
         {
+            // user is authenticated
+            if (await IsUserAuthenticated())
+            {
+                // get cart from database
+                await _http.DeleteAsync($"api/cart/{productId}/{productTypeId}");
+
+                return;
+            }
+            // user is not authenticated
+            
             // get the cart items
             var cart = await _localStorage.GetItemAsync<List<CartItem>>("cart");
 
@@ -78,9 +88,6 @@ namespace ECommerce.Client.Services.CartService
 
             // update cart
             await _localStorage.SetItemAsync("cart", cart);
-
-            // update cart item count
-            await GetCartItemsCount();
         }
 
         // return all products based on cart items

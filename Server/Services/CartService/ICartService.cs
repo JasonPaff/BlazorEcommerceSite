@@ -11,6 +11,7 @@ namespace ECommerce.Server.Services.CartService
         Task<ServiceResponse<List<CartProductResponse>>> GetDbCartProducts();
         Task<ServiceResponse<bool>> AddToCart(CartItem cartItem);
         Task<ServiceResponse<bool>> UpdateQuantity(CartItem cartItem);
+        Task<ServiceResponse<bool>> RemoveFromCart(int productId, int productTypeId);
 
     }
 }

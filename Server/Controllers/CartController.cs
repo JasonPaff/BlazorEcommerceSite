@@ -50,6 +50,14 @@ namespace ECommerce.Server.Controllers
             return Ok(result);
         }
         
+        // remove item from cart
+        [HttpDelete("{productId}/{productTypeId}")]
+        public async Task<ActionResult<ServiceResponse<bool>>> RemoveFromCart(int productId, int productTypeId)
+        {
+            var result = await _cartService.RemoveFromCart(productId, productTypeId);
+            return Ok(result);
+        }
+        
         // get cart items count
         [HttpGet("count")]
         public async Task<ActionResult<ServiceResponse<int>>> GetCartItemsCount()

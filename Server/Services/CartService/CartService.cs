@@ -142,5 +142,30 @@ namespace ECommerce.Server.Services.CartService
 
             return new ServiceResponse<bool> {Data = true};
         }
+
+        // remove a product form the cart
+        public async Task<ServiceResponse<bool>> RemoveFromCart(int productId, int productTypeId)
+        {
+            // look for item in database
+            var dbCartItem = await _context.CartItems.FirstOrDefaultAsync(ci =>
+                ci.ProductId == productId && ci.ProductTypeId == productTypeId &&
+                ci.UserId == GetUserId());
+
+            // no item, failure
+            if (dbCartItem is null) return new ServiceResponse<bool>
+            {
+                Data = false,
+                Success = false,
+                Message = "Cart item does not exist."
+            };
+            
+            // delete item if found
+            _context.CartItems.Remove(dbCartItem);
+
+            // update database
+            await _context.SaveChangesAsync();
+
+            return new ServiceResponse<bool> {Data = true};
+        }
     }
 }

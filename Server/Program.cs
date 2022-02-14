@@ -5,6 +5,7 @@ global using ECommerce.Server.Services.ProductService;
 global using ECommerce.Server.Services.CategoryService;
 global using ECommerce.Server.Services.CartService;
 global using ECommerce.Server.Services.AuthService;
+global using ECommerce.Server.Services.OrderService;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.Extensions.Configuration;
@@ -31,6 +32,7 @@ builder.Services.AddSwaggerGen();
 builder.Services.AddScoped<IProductService, ProductService>();
 builder.Services.AddScoped<ICategoryService, CategoryService>();
 builder.Services.AddScoped<ICartService, CartService>();
+builder.Services.AddScoped<IOrderService, OrderService>();
 builder.Services.AddScoped<IAuthService, AuthService>();
 
 // jwt authentication services

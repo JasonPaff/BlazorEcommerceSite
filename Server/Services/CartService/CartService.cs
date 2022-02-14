@@ -75,7 +75,7 @@ namespace ECommerce.Server.Services.CartService
             await _context.SaveChangesAsync();
 
             // return cart items
-            return await GetDbCartProducts();
+            return await GetDbCartProducts(_authService.GetUserId());
         }
 
         // return number of items in user cart
@@ -86,9 +86,11 @@ namespace ECommerce.Server.Services.CartService
         }
 
         // return cart items from database for authenticated user
-        public async Task<ServiceResponse<List<CartProductResponse>>> GetDbCartProducts()
+        public async Task<ServiceResponse<List<CartProductResponse>>> GetDbCartProducts(int? userId)
         {
-            return await GetCartProducts(await _context.CartItems.Where(ci => ci.UserId == _authService.GetUserId()).ToListAsync());
+            userId ??= _authService.GetUserId();
+
+            return await GetCartProducts(await _context.CartItems.Where(ci => ci.UserId == userId).ToListAsync());
         }
 
         // add item to cart in database

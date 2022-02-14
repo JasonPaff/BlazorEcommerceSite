@@ -26,5 +26,16 @@ namespace ECommerce.Server.Controllers
             var session = await _paymentService.CreateCheckoutSession();
             return Ok(session.Url);
         }
+
+        [HttpPost]
+        public async Task<ActionResult<ServiceResponse<bool>>> FulfillOrder()
+        {
+            var response = await _paymentService.FulfillOrder(Request);
+
+            if (!response.Success)
+                return BadRequest(response.Message);
+
+            return Ok(response);
+        }
     }
 }

@@ -10,5 +10,6 @@ namespace ECommerce.Server.Services.AuthService
         Task<ServiceResponse<bool>> ChangePassword(int userId, string newPassword);
         int GetUserId();
         string GetUserEmail();
+        Task<User> GetUserByEmail(string email);
     }
 }

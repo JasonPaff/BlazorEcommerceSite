@@ -16,14 +16,6 @@ namespace ECommerce.Server.Controllers
             _orderService = orderService;
         }
 
-        // add order to database
-        [HttpPost]
-        public async Task<ActionResult<ServiceResponse<bool>>> PlaceOrder()
-        {
-            var result = await _orderService.PlaceOrder();
-            return Ok(result);
-        }
-        
         // return orders
         [HttpGet]
         public async Task<ActionResult<ServiceResponse<List<OrderOverviewResponse>>>> GetOrders()

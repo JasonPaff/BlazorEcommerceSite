@@ -3,28 +3,27 @@ using System.Net.Http;
 using System.Net.Http.Json;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Components;
-using Microsoft.AspNetCore.Components.Authorization;
 
 namespace ECommerce.Client.Services.OrderService
 {
     public class OrderService : IOrderService
     {
         private readonly HttpClient _http;
-        private readonly AuthenticationStateProvider _authenticationStateProvider;
         private readonly NavigationManager _navigationManager;
+        private readonly IAuthService _authService;
 
         // inject http, authentication, navigation
-        public OrderService(HttpClient http, AuthenticationStateProvider authenticationStateProvider, NavigationManager navigationManager)
+        public OrderService(HttpClient http, NavigationManager navigationManager, IAuthService authService)
         {
             _http = http;
-            _authenticationStateProvider = authenticationStateProvider;
             _navigationManager = navigationManager;
+            _authService = authService;
         }
         
         // place order
         public async Task PlaceOrder()
         {
-            if (await IsUserAuthenticated())
+            if (await _authService.IsUserAuthenticated())
                 await _http.PostAsync("api/order", null);
             else
                 _navigationManager.NavigateTo("login");
@@ -37,10 +36,11 @@ namespace ECommerce.Client.Services.OrderService
             return result.Data;
         }
 
-        // true/false if user is authenticated
-        private async Task<bool> IsUserAuthenticated()
+        // get order details
+        public async Task<OrderDetailsResponse> GetOrderDetails(int orderId)
         {
-            return (await _authenticationStateProvider.GetAuthenticationStateAsync()).User.Identity.IsAuthenticated;
+            var result = await _http.GetFromJsonAsync<ServiceResponse<OrderDetailsResponse>>($"api/order/{orderId}");
+            return result.Data;
         }
     }
 }

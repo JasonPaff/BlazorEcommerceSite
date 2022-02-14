@@ -844,3 +844,4 @@ C:\Users\jason\RiderProjects\ECommerce\Client\bin\Debug\net6.0\Microsoft.Net.Htt
 C:\Users\jason\RiderProjects\ECommerce\Client\obj\Debug\net6.0\build-gz\xFWnkvNp.gz
 C:\Users\jason\RiderProjects\ECommerce\Client\obj\Debug\net6.0\build-gz\DgJ7uqUB.gz
 C:\Users\jason\RiderProjects\ECommerce\Client\obj\Debug\net6.0\scopedcss\Pages\Orders.razor.rz.scp.css
+C:\Users\jason\RiderProjects\ECommerce\Client\obj\Debug\net6.0\scopedcss\Pages\OrderDetails.razor.rz.scp.css

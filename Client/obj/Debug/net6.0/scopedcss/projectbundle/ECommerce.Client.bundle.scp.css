@@ -42,6 +42,32 @@
 }    
     
     
+/* /Pages/OrderDetails.razor.rz.scp.css */
+.container[b-ypio86syhu] {
+    display: flex;
+    padding: 6px;
+}
+
+.image-wrapper[b-ypio86syhu] {
+    width: 150px;
+    text-align: center;
+}
+
+.image[b-ypio86syhu] {
+    max-height: 150px;
+    max-width: 150px;
+    padding: 6px;
+}
+
+.name[b-ypio86syhu] {
+    flex-grow: 1;
+    padding: 6px;
+}
+
+.product-price[b-ypio86syhu] {
+    font-weight: 600;
+    text-align: right;
+}
 /* /Pages/Orders.razor.rz.scp.css */
 .container[b-bbosbhjo6a] {
     display: flex;

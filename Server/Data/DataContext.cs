@@ -18,7 +18,11 @@ namespace ECommerce.Server.Data
 
             // cart item relationships
             modelBuilder.Entity<CartItem>()
-                .HasKey(ci => new { ci.UserId, ci.ProductId, ci.ProductTypeId});
+                .HasKey(ci => new {ci.UserId, ci.ProductId, ci.ProductTypeId});
+
+            // order item relationships
+            modelBuilder.Entity<OrderItem>()
+                .HasKey(oi => new {oi.OrderId, oi.ProductId, oi.ProductTypeId});
 
             // product type seeding
             modelBuilder.Entity<ProductType>().HasData(
@@ -285,5 +289,7 @@ namespace ECommerce.Server.Data
         public DbSet<ProductVariant> ProductVariants { get; set; }
         public DbSet<User> Users { get; set; }
         public DbSet<CartItem> CartItems { get; set; }
+        public DbSet<Order> Orders { get; set; }
+        public DbSet<OrderItem> OrderItems { get; set; }
     }
 }

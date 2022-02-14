@@ -93,7 +93,52 @@ namespace ECommerce.Server.Services.OrderService
             }));
 
             response.Data = orderResponse;
+            return response;
+        }
 
+        // return order details
+        public async Task<ServiceResponse<OrderDetailsResponse>> GetOrderDetails(int orderId)
+        {
+            var response = new ServiceResponse<OrderDetailsResponse>();
+            
+            // find order and get included product info
+            var order = await _context.Orders
+                .Include(o => o.OrderItems)
+                .ThenInclude(oi => oi.Product)
+                .Include(o => o.OrderItems)
+                .ThenInclude(oi => oi.ProductType)
+                .Where(o => o.UserId == _authService.GetUserId() && o.Id == orderId)
+                .OrderByDescending(o => o.OrderDate)
+                .FirstOrDefaultAsync();
+
+            // no order found
+            if (order is null)
+            {
+                response.Success = false;
+                response.Message = "Order not found.";
+                return response;
+            }
+
+            // order found
+            var orderDetailsResponse = new OrderDetailsResponse
+            {
+                OrderDate = order.OrderDate,
+                TotalPrice = order.TotalPrice,
+                Products = new List<OrderDetailsProductResponse>()
+            };
+
+            // add order details
+            order.OrderItems.ForEach(item => orderDetailsResponse.Products.Add(new OrderDetailsProductResponse
+            {
+                ProductId = item.ProductId,
+                ImageUrl = item.Product.ImageUrl,
+                ProductType = item.ProductType.Name,
+                Quantity = item.Quantity,
+                Title = item.Product.Title,
+                TotalPrice = item.TotalPrice
+            }));
+
+            response.Data = orderDetailsResponse;
             return response;
         }
     }

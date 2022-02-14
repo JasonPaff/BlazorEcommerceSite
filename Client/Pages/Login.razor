@@ -60,7 +60,10 @@
             // users authentication state
             await _authenticationStateProvider.GetAuthenticationStateAsync();
 
+            // store cart itmes
             await _cartService.StoreCartItems(true);
+
+            await _cartService.GetCartItemsCount();
             
             // redirect to where the login came from
             _navigationManager.NavigateTo(returnUrl);

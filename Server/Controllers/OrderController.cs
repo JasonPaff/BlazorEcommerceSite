@@ -1,4 +1,5 @@
-﻿using System.Threading.Tasks;
+﻿using System.Collections.Generic;
+using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 
 namespace ECommerce.Server.Controllers
@@ -20,6 +21,14 @@ namespace ECommerce.Server.Controllers
         public async Task<ActionResult<ServiceResponse<bool>>> PlaceOrder()
         {
             var result = await _orderService.PlaceOrder();
+            return Ok(result);
+        }
+        
+        // return orders
+        [HttpGet]
+        public async Task<ActionResult<ServiceResponse<List<OrderOverviewResponse>>>> GetOrders()
+        {
+            var result = await _orderService.GetOrders();
             return Ok(result);
         }
     }

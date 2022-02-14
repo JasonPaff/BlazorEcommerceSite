@@ -93,5 +93,23 @@ namespace ECommerce.Server.Services.CartService
         {
             return await GetCartProducts(await _context.CartItems.Where(ci => ci.UserId == GetUserId()).ToListAsync());
         }
+
+        // add item to cart in database
+        public async Task<ServiceResponse<bool>> AddToCart(CartItem cartItem)
+        {
+            // look for item in database
+            var sameItem = await _context.CartItems.FirstOrDefaultAsync(ci =>
+                ci.ProductId == cartItem.ProductId && ci.ProductTypeId == cartItem.ProductTypeId &&
+                ci.UserId == GetUserId());
+
+            // add item or update quantity depending
+            if (sameItem is null) _context.CartItems.Add(cartItem);
+            else sameItem.Quantity += cartItem.Quantity;
+
+            // save changes to database
+            await _context.SaveChangesAsync();
+
+            return new ServiceResponse<bool> {Data = true};
+        }
     }
 }

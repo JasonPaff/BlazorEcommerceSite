@@ -1,5 +1,4 @@
 # Blazor Ecommerce Site
-Blazor ECommerce Site
 
 Tech Stack - C# / Asp.Net / Blazor / SQL Server / Entity Framework
 APIs - Stripe

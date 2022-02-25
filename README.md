@@ -11,6 +11,9 @@ ECommerce is a proof of concept website that was created to showcase my Asp.Net 
 
 ![cart](blazorcart.png)
 
-![cart](blazorJWT.png)
+![jwt](blazorJWT.png)
 
-![cart](pagination.png)
+![paging](pagination.png)
+
+
+![orders](blazororders.png)

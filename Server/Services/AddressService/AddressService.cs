@@ -35,6 +35,7 @@ namespace ECommerce.Server.Services.AddressService
                 // add new address
                 address.UserId = _authService.GetUserId();
                 _context.Addresses.Add(address);
+                
                 response.Data = address;
             }
             else
@@ -47,8 +48,10 @@ namespace ECommerce.Server.Services.AddressService
                 dbAddress.State = address.State;
                 dbAddress.ZipCode = address.ZipCode;
                 dbAddress.Country = address.Country;
+                
+                response.Data = dbAddress;
             }
-
+            
             // update database
             await _context.SaveChangesAsync();
 

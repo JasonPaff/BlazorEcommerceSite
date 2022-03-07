@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "TcB29jJTZRNfYvCSrDTe0/g6Mborvt3odoGLe03voqjD+5mtZNvzg0iTcif745ALQnsWeJX3loGpUUZAtjqBTQ==",
+  "dgSpecHash": "ZqKsKhT3PRGG7BuV2YezuZxiUHCtgxuMJfmac7ZByh3jYH4ugjrRE9A1mBs8IT47bXapFSrFohKjACAOv4ay5g==",
   "success": true,
-  "projectFilePath": "C:\\Users\\jason\\RiderProjects\\ECommerce\\server\\ECommerce.Server.csproj",
+  "projectFilePath": "C:\\Users\\jason\\RiderProjects\\ECommerce\\Server\\ECommerce.Server.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\jason\\.nuget\\packages\\blazored.localstorage\\4.2.0\\blazored.localstorage.4.2.0.nupkg.sha512",
     "C:\\Users\\jason\\.nuget\\packages\\humanizer.core\\2.8.26\\humanizer.core.2.8.26.nupkg.sha512",

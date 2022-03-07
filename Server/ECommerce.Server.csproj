@@ -25,5 +25,11 @@
     <ProjectReference Include="..\Shared\ECommerce.Shared.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Content Include="obj\Debug\net6.0\ECommerce.Server.deps.json" />
+    <Content Include="obj\Debug\net6.0\PublishOutputs.de0557ea5e.txt" />
+    <Content Include="obj\Debug\net6.0\staticwebassets.publish.json" />
+  </ItemGroup>
+
 
 </Project>

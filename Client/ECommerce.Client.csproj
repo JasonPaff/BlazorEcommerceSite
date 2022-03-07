@@ -18,4 +18,10 @@
     <ProjectReference Include="..\Shared\ECommerce.Shared.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Content Include="obj\Debug\net6.0\blazor.publish.boot.json" />
+    <Content Include="obj\Debug\net6.0\PublishOutputs.d9a077536e.txt" />
+    <Content Include="obj\Debug\net6.0\staticwebassets.publish.json" />
+  </ItemGroup>
+
 </Project>

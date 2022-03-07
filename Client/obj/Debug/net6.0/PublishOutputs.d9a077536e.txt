@@ -1,0 +1,1 @@
+﻿C:\Users\jason\RiderProjects\ECommerce\Client\bin\Debug\net6.0\publish\web.config

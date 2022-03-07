@@ -9,4 +9,8 @@
   <ItemGroup>
     <SupportedPlatform Include="browser" />
   </ItemGroup>
+
+  <ItemGroup>
+    <Content Include="obj\Debug\net6.0\PublishOutputs.e17d80bbdf.txt" />
+  </ItemGroup>
 </Project>
